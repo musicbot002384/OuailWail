@@ -51,12 +51,6 @@ if (message.content.startsWith(prefix + 'setgame')) {
 });
 
 
-
-client.on('ready', () => {
-  console.log(`Welcome To Sharks ${client.user.tag}!`);
-});
-
-
 client.on('guildMemberAdd', member => {
     let channel = member.guild.channels.find('name', 'welcome');
     let memberavatar = member.user.avatarURL
