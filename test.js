@@ -83,7 +83,7 @@ client.on('guildMemberAdd', member => {
         .setColor('RED')
         .setFooter(`====ولكم منور السيرفر اتمنا لك الاستمتاع====`, 'https://cdn.discordapp.com/attachments/397818254439219217/399292026782351381/shy.png')
     
-    var channel =member.guild.channels.find('name', 'welcome')
+    var channel =member.guild.channels.find('name', 'chat')
     if (!channel) return;
     channel.send({embed : embed});
     });
