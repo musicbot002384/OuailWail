@@ -56,4 +56,4 @@ client.on('ready', () => {
   console.log(`Welcome To Sharks ${client.user.tag}!`);
 });
 
-client.login('NTIxNzgzMzYzMjMzOTA2NzAw.DvHzxw.c3lV9f42FAa6JcNS_LiTUKRoa6o');
+client.login('NTIyMjI0NzAwNjAxMDA4MTM0.DvH3iQ.0vHb2cO5mCMnKtJqG3YU6BNhOOY');
