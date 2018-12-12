@@ -73,19 +73,5 @@ client.on('guildMemberAdd', member => {
       channel.sendEmbed(embed);
     });
     
-    client.on('guildMemberRemove', member => {
-        var embed = new Discord.RichEmbed()
-        .setAuthor(member.user.username, member.user.avatarURL)
-        .setThumbnail(member.user.avatarURL)
-        .setTitle(`بس بعرف وين رحت؟؟؟ ✋:skin-tone-1: 😔`)
-        .setDescription(`مع السلامه تشرفنا بك ✋:skin-tone-1: 😔 `)
-        .addField('👤   تبقي',`**[ ${member.guild.memberCount} ]**`,true)
-        .setColor('RED')
-        .setFooter(`====ولكم منور السيرفر اتمنا لك الاستمتاع====`, 'https://cdn.discordapp.com/attachments/397818254439219217/399292026782351381/shy.png')
-    
-    var channel =member.guild.channels.find('name', 'chat')
-    if (!channel) return;
-    channel.send({embed : embed});
-    });
 
-client.login('NTIyMjI0NzAwNjAxMDA4MTM0.DvH3iQ.0vHb2cO5mCMnKtJqG3YU6BNhOOY');
+client.login('NTIyMjI0NzAwNjAxMDA4MTM0.DvLecA.Yag2cXMDESW3mNpJGBIfKIaAuNU');
