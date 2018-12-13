@@ -39,7 +39,7 @@ client.on('message', function(msg) {
       "amsterdam": "Amsterdam",
       "hongkong": "Hong Kong"
  
-  if(msg.content.startsWith ('%server')) {
+  if(msg.content.startsWith ('prefix + server')) {
     let embed = new Discord.RichEmbed()
     .setColor('RANDOM')
     .setThumbnail(msg.guild.iconURL)
