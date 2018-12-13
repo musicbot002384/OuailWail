@@ -342,6 +342,5 @@ client.on('message', function(msg) {
   }
 });
 
-});
 
 client.login('NTIyMjI0NzAwNjAxMDA4MTM0.DvQ1bA.L6wNmRIbSE7mE844wq1FxWCfp8I');
