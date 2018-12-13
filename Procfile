@@ -1,1 +1,1 @@
-worker: node sharks.js
+worker: node test.js
