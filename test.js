@@ -47,9 +47,6 @@ if (message.content.startsWith(prefix + 'setgame')) {
 } 
 
 
-
-});
-
 client.on('message', message => {
   var args = message.content.split(/[ ]+/)
   if(message.content.includes('discord.gg')){
@@ -58,8 +55,6 @@ client.on('message', message => {
   return message.reply(`** ممنوع نشر سيرفرات أخرى بالسيرفر
   يمكن تاخذ ميوت ساعه لو بقيت تنشر  **`)
   }
-});
-
 
 client.on('message', message => {
   var args = message.content.split(/[ ]+/)
@@ -69,7 +64,6 @@ client.on('message', message => {
   return message.reply(`** ممنوع نشر فيديوهات بالسيرفر
   يمكن تاخذ ميوت ساعه لو بقيت تنشر **`)
   }
-});
 
 
 client.on('message', function(msg) {
@@ -89,7 +83,6 @@ client.on('message', function(msg) {
       "london": "London",
       "amsterdam": "Amsterdam",
       "hongkong": "Hong Kong"
-  };
  
   if(msg.content.startsWith ('N!server')) {
     let embed = new Discord.RichEmbed()
@@ -108,8 +101,6 @@ client.on('message', function(msg) {
     .addField('**__ Created At | صنع في __**',msg.guild.createdAt.toLocaleString())
     msg.channel.send({embed:embed});
   }
-});
-
 
 
 client.on('message', message => {
@@ -122,8 +113,8 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' لي
        SEND_MESSAGES: false
 
          }).then(() => {
-             message.reply("تم تقفيل الشات :white_check_mark: ")
-         });
+             message.reply("تم تقفيل الشات :white_check_mark: ");
+      
            }
 
 if (message.content === "%unmutechannel") {
@@ -134,13 +125,10 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('لي�
        SEND_MESSAGES: true
 
          }).then(() => {
-             message.reply("تم فتح الشات:white_check_mark:")
-         });
+             message.reply("تم فتح الشات:white_check_mark:");
+      
            }
 
-
-
-});
 
 
 
@@ -173,10 +161,9 @@ client.on('message', message=> {
   {
   message.reply(" كيف اقدر اساعدك!!");
   }
-});
 
 client.on("message", message => {
-  if(message.content.startsWith("%verify")) { %act
+  if(message.content.startsWith("%verify")) {
     let num = Math.floor((Math.random() * 4783) + 10);
  
     message.channel.send(`يرجاء كتابة الرقم التالي: **${num}**`).then(m => {
@@ -190,8 +177,6 @@ client.on("message", message => {
         message.member.addRole(message.guild.roles.find(c => c.name == "Verified")); // اسم الرتبة
       }).catch(() => {
         m.edit(`You took to long to type the number.\nRe-type the command again if you want to verify yourself.`).then(m2 => m.delete(15000));
-
-      });
    
   
 });
