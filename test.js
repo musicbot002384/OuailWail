@@ -39,7 +39,7 @@ client.on('message', function(msg) {
       "amsterdam": "Amsterdam",
       "hongkong": "Hong Kong"
  
-  if(msg.content.startsWith ('N!server')) {
+  if(msg.content.startsWith ('%server')) {
     let embed = new Discord.RichEmbed()
     .setColor('RANDOM')
     .setThumbnail(msg.guild.iconURL)
@@ -137,4 +137,4 @@ client.on('message', message=> {
 }
 })
 
-client.login('NTIyMjI0NzAwNjAxMDA4MTM0.DvMrdw.T1DE9aO_jI5kmiVp1tDwjYmvTbo');
+client.login('NTIyMjI0NzAwNjAxMDA4MTM0.DvQIgg.KIeXQrO3Jgkakr2HKGGLsEVuLGo');
