@@ -354,7 +354,7 @@ client.on("message", message => {
       }).then(collected => {
         message.delete();
         m.delete();
-        message.member.addRole(message.guild.roles.find(c => c.name == "Verified"));
+        message.member.addRole(message.guild.roles.find(c => c.name == "Sharks"));
       }).catch(() => {
         m.edit(`You took to long to type the number.\nRe-type the command again if you want to verify yourself.`).then(m2 => m.delete(15000));
 });
@@ -367,10 +367,10 @@ client.on('guildMemberAdd', member => { //LAST CODES -HONRAR-
     const ei = invites[member.guild.id];
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id);
-    const stewart = member.guild.channels.find("name", "welcome");
-     stewart.send(`<@${member.user.id}> تمت الدعوه من <@${inviter.id}>`);
-     stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
+    const stewart = member.guild.channels.find("name", "chat");
+     stewart.send(`<@${member.user.id}> invite By <@${inviter.id}>`);
+   //  stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
   });
 })
 
-client.login('NTIyMjI0NzAwNjAxMDA4MTM0.DvR5Wg.ncbVQWBl98j6xQKj5dwGECTvOQc');
+client.login('NTAwNzU4ODg2NDcxNDM0MjUy.DvVYSg.KfL_wjIiczTtvLDPzNTiibwvGQ8');
