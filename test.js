@@ -1,19 +1,59 @@
 const Discord = require('discord.js');
-const Anitspam = require('anti-spam');
+const fs = require('fs');
 const client = new Discord.Client();
-antispam(client, {
-  warnBuffer: 3, //الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على تحذير.
-  maxBuffer: 5, // الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على ميوت.
-  interval: 5000, // مقدار الوقت قبل حصول باند
-  warningMessage: "*** لو تسوي سبام مره ثانيا راح يجيك ميوت ***", // رسالة تحذير اذا سوا سبام!
-  roleMessage: "***مبروك على الميوت حذرتك يا بتاع السبام***", // الرسالة الي تجي اذا شخص اخذ ميوت
-  roleName: "Muted", // اسم رتبة الميوت
-  maxDuplicatesWarning: 10, // عدد الرسايل الي قبل التحذيرات
-  maxDuplicatesBan: 15, // عدد الرسايل الي يقدر المستخدم يرسلها قبل الميوت
-  time: 10, // عدد الوقت الي يجلس لين تسحب رتبة الميوت من الشخص الحسبة برمجية وليست كتابية
+const prefix = '%'
+
+client.on('ready', () => {
+  console.log(`Welcome Bro ${client.user.tag}!`);
 });
 
-const prefix = '%'
+client.on('message', message => {
+  if (!message.content.startsWith(prefix)) return;
+  var args = message.content.split(' ').slice(1);
+  var argresult = args.join(' ');
+  if (message.author.id !== "476577762396864512") return;
+
+  
+  if (message.content.startsWith(prefix + 'setwatch')) {
+  client.user.setActivity(argresult, {type: 'WATCHING'})
+     console.log('test' + argresult);
+    message.channel.sendMessage(`Watch Now: **${argresult}`)
+} 
+
+ 
+  if (message.content.startsWith(prefix + 'setlis')) {
+  client.user.setActivity(argresult, {type: 'LISTENING'})
+     console.log('test' + argresult);
+    message.channel.sendMessage(`LISTENING Now: **${argresult}`)
+} 
+
+
+if (message.content.startsWith(prefix + 'setname')) {
+  client.user.setUsername(argresult).then
+      message.channel.sendMessage(`Username Changed To **${argresult}**`)
+  return message.reply("You Can change the username 2 times per hour");
+} 
+
+if (message.content.startsWith(prefix + 'setavatar')) {
+  client.user.setAvatar(argresult);
+   message.channel.sendMessage(`Avatar Changed Successfully To **${argresult}**`);
+}
+
+if (message.content.startsWith(prefix + 'setT')) {
+  client.user.setGame(argresult, "https://www.twitch.tv/peery13");
+     console.log('test' + argresult);
+    message.channel.sendMessage(`Streaming: **${argresult}`)
+} 
+if (message.content.startsWith(prefix + 'setgame')) {
+  client.user.setGame(argresult);
+     console.log('test' + argresult);
+    message.channel.sendMessage(`Playing: **${argresult}`)
+} 
+
+
+
+});
+
  client.on('message', message => {
 if (message.author.id === client.user.id) return;
 if (message.guild) {
