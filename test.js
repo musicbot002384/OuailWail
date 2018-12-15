@@ -1,144 +1,42 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-
+client.on('ready', () => {
+        client.user.setGame(`Sharks`,'https://www.twitch.tv/TEST-Broadcast');
+          console.log('Im Ready!');
+  
 client.on('message', message => {
-  if (message.content.split(' ')[0] == '%b')
-     message.guild.members.forEach( member => {
-       if (!message.member.hasPermission("ADMINISTRATOR"))  return;
-
-
-         member.send( `${member} ! ` + "**" + message.guild.name + " : ** " + message.content.substr(3));
-                                                    message.delete();
-          
-                                                  });
-          
-                                                });
- clinet.on("message", message => {
-     var prefix = "%";
-
-           var args = message.content.substring(prefix.length).split(" ");
-              if (message.content.startsWith(prefix + "b")) {
-                        if (!message.member.hasPermission("ADMINISTRATOR"))  return;
-
-                        if (!args[1]) {
-                          
-                               let embed3 = new Discord.RichEmbed()
-                                   .setDescription(":white_check_mark: | تم ارسال رسالة لا يوجد فيها شيء")
-                                     .setColor("#FF00FF")
-                                        message.channel.sendEmbed(embed3);
-                          
-                                      } else {
-
-                          
-                                         let embed4 = new Discord.RichEmbed()
-                                                          .setDescription(':white_check_mark: | تم ارسال الرساله للجميع ..')
-                                                              .setColor("#99999")
-                             
-                                                              message.channel.sendEmbed(embed4);
-                                                    message.delete();
-                          }
-                        }
-});
-
-client.on('message', message => {
-  var prefix = "%" 
-       if (message.author.bot) return;
-  if (message.content.startsWith(prefix + "كم")) {
-      let uptime = client.uptime;
+    var prefix = "%";
    
-      let days = 0;
-      let hours = 0;
-      let minutes = 0;
-      let seconds = 0;
-      let notCompleted = true;
-   
-      while (notCompleted) {
-   
-          if (uptime >= 8.64e+7) {
-   
-              days++;
-              uptime -= 8.64e+7;
-   
-          } else if (uptime >= 3.6e+6) {
-   
-              hours++;
-              uptime -= 3.6e+6;
-   
-          } else if (uptime >= 60000) {
-   
-              minutes++;
-              uptime -= 60000;
-   
-          } else if (uptime >= 1000) {
-              seconds++;
-              uptime -= 1000;
-   
-          }
-   
-          if (uptime < 1000)  notCompleted = false;
-   
-      }
-   
-      message.channel.send("" +$days (days), $hours (hrs), $({minutes}) , $({seconds}) (sec)+ "");
-   
-  }
-  });
-
-client.on('message', message => {
-  if (message.content.split(' ')[0] == '%b')
-     message.guild.members.forEach( member => {
-       if (!message.member.hasPermission("ADMINISTRATOR"))  return;
-
-
-         member.send( `${member} ! ` + "**" + message.guild.name + " : ** " + message.content.substr(3));
-                                                    message.delete();
-          
-                                                  });
-          
-                                                });
- clinet.on("message", message => {
-     var prefix = "%";
-
-           var args = message.content.substring(prefix.length).split(" ");
-              if (message.content.startsWith(prefix + "b")) {
-                        if (!message.member.hasPermission("ADMINISTRATOR"))  return;
-
-                        if (!args[1]) {
-                          
-                               let embed3 = new Discord.RichEmbed()
-                                   .setDescription(":white_check_mark: | تم ارسال رسالة لا يوجد فيها شيء")
-                                     .setColor("#FF00FF")
-                                        message.channel.sendEmbed(embed3);
-                          
-                                      } else {
-
-                          
-                                         let embed4 = new Discord.RichEmbed()
-                                                          .setDescription(':white_check_mark: | تم ارسال الرساله للجميع ..')
-                                                              .setColor("#99999")
-                             
-                                                              message.channel.sendEmbed(embed4);
-                                                    message.delete();
-                          }
-                        }
-});
-
-client.on('guildMemberAdd', member => { //LAST CODES -HONRAR-
-  member.guild.fetchInvites().then(guildInvites => {
-    const ei = invites[member.guild.id];
-    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-    const inviter = client.users.get(invite.inviter.id);
-    const stewart = member.guild.channels.find("name", "chat");
-     stewart.send(`<@${member.user.id}> تمت الدعوه من <@${inviter.id}>`);
-   //  stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
-  });
-})
+        if (message.author.id === client.user.id) return;
+        if (message.guild) {
+       let embed = new Discord.RichEmbed()
+        let args = message.content.split(' ').slice(1).join(' ');
+    if(message.content.split(' ')[0] == prefix + 'bc') {
+        if (!args[1]) {
+    message.channel.send("*bc <message>");
+    return;
+    }
+            message.guild.members.forEach(m => {
+       if(!message.member.hasPermission('ADMINISTRATOR')) return;
+                var bc = new Discord.RichEmbed()
+                .addField(':gear: السيرفر :', `${message.guild.name}`)
+                .addField(':speaking_head: المرسل : ', `${message.author.username}#${message.author.discriminator}`)
+                .addField(' :scroll: الرسالة : ', args)
+                .setColor('#ff0000')
+                // m.send(`[${m}]`);
+                m.send(`${m}`,{embed: bc});
+            });
+        }
+        } else {
+            return;
+        }
+    });
 
 client.on('message', message=> {
   if (message.author.bot) return;
   if (message.isMentioned(client.user))
   {
-  message.reply(" البوت قيد الخدمة");
+  message.reply(" البوت قريبا راح يصير أفضل");
   }
 });
 
@@ -206,21 +104,21 @@ client.on('message', function(msg) {
       "hongkong": "Hong Kong"
   };
  
-  if(msg.content.startsWith ('%server')) {
+  if(msg.content.startsWith ('N!server')) {
     let embed = new Discord.RichEmbed()
     .setColor('RANDOM')
     .setThumbnail(msg.guild.iconURL)
     .setTitle(`${msg.guild.name}`)
-    .addField('**__اسم السيرفر__**',`[** __${msg.guild.name}__ **]`,true)
-    .addField('**__الاونر الاساسي__**',`**${msg.guild.owner}**`,true)
-    .addField('**__ايدي السيرفر__**',`**${msg.guild.id}**`,true)
-    .addField('**__عدد الاعضاء__**',`[** __${msg.guild.memberCount}__ **]`,true)
-    .addField('**__الاعضاء الاونلاين__**',`[** __${msg.guild.members.filter(m=>m.presence.status == 'online').size}__ **]`,true)
-    .addField('**__مستوي الحمايه__**',`[** __${verifLevels[msg.guild.verificationLevel]}__** ]`,true)
-    .addField('**__البلد__**',`[** __${region[msg.guild.region]}__** ]`,true)
-    .addField('**__رومات كتابيه__**',`[** __${msg.guild.channels.filter(m => m.type === 'text').size}__** ]`,true)
-    .addField('**__رومات صوتيه__**',`[** __${msg.guild.channels.filter(m => m.type === 'voice').size}__ **]`,true)
-    .addField('**__صنع في __**',msg.guild.createdAt.toLocaleString())
+    .addField('**__ Server Name | اسم السيرفر__**',`[** __${msg.guild.name}__ **]`,true)
+    .addField('**__ OwnerShip | الاونر الاساسي__**',`**${msg.guild.owner}**`,true)
+    .addField('**__ Server ID | ايدي السيرفر__**',`**${msg.guild.id}**`,true)
+    .addField('**__ Members Count | عدد الاعضاء__**',`[** __${msg.guild.memberCount}__ **]`,true)
+    .addField('**__ Online | الاعضاء الاونلاين__**',`[** __${msg.guild.members.filter(m=>m.presence.status == 'online').size}__ **]`,true)
+    .addField('**__ Verification Level | مستوي الحمايه__**',`[** __${verifLevels[msg.guild.verificationLevel]}__** ]`,true)
+    .addField('**__ Region | البلد__**',`[** __${region[msg.guild.region]}__** ]`,true)
+    .addField('**__ Text Channels | رومات كتابيه__**',`[** __${msg.guild.channels.filter(m => m.type === 'text').size}__** ]`,true)
+    .addField('**__ Voice Channels | رومات صوتيه__**',`[** __${msg.guild.channels.filter(m => m.type === 'voice').size}__ **]`,true)
+    .addField('**__ Created At | صنع في __**',msg.guild.createdAt.toLocaleString())
     msg.channel.send({embed:embed});
   }
 });
@@ -237,12 +135,23 @@ client.on("message", message => {
       }).then(collected => {
         message.delete();
         m.delete();
-        message.member.addRole(message.guild.roles.find(c => c.name == "Sharks"));
+        message.member.addRole(message.guild.roles.find(c => c.name == "Shark"));
       }).catch(() => {
         m.edit(`You took to long to type the number.\nRe-type the command again if you want to verify yourself.`).then(m2 => m.delete(15000));
 });
 })
 }
+})
+
+client.on('guildMemberAdd', member => { //LAST CODES -HONRAR-
+  member.guild.fetchInvites().then(guildInvites => {
+    const ei = invites[member.guild.id];
+    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+    const inviter = client.users.get(invite.inviter.id);
+    const stewart = member.guild.channels.find("name", "chat");
+     stewart.send(`<@${member.user.id}> invite By <@${inviter.id}>`);
+   //  stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
+  });
 })
 
 
