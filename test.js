@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const Anitspam = require('anti-spam')
+const Anitspam = require('anti-spam');
 const client = new Discord.Client();
 antispam(client, {
   warnBuffer: 3, //الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على تحذير.
