@@ -222,8 +222,6 @@ client.on('guildMemberAdd', (member) => {
                                      });
 
 
-   
-
 const invites = {};
 
 const wait = require('util').promisify(setTimeout);
