@@ -223,17 +223,17 @@ client.on('guildMemberAdd', (member) => {
   client.on('message', message => {                      
       if(!message.channel.guild) return;
          if(message.content.startsWith(prefix + 'active')) {
-          let modlog = client.channels.find('name', 'الـــــــــشات_العام');
+          let modlog = client.channels.find('name', 'فعل-نفسك');
          if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
          message.channel.sendMessage(`اضغط على الصح عشان تتفعل`).then(msg => {
          
          
-          msg.react('✅')
-         .then(() => msg.react('✅'))
+          msg.react(':__: ')
+         .then(() => msg.react(':__: '))
        
        
    
-         let activeFilter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
+         let activeFilter = (reaction, user) => reaction.emoji.name === ':__: ' && user.id === message.author.id;
        
          let active = msg.createReactionCollector(activeFilter, { time: 15000 });
        
