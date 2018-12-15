@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const fs = require('fs');
-const util = require ('util');
+const util = require('util');
 const mmss = require('ms');
 const client = new Discord.Client();
 const prefix = '%'
@@ -223,6 +223,8 @@ client.on('guildMemberAdd', (member) => {
                                      });
 
 
+
+
 const invites = {};
 
 const wait = require('util').promisify(setTimeout);
@@ -244,10 +246,10 @@ client.on('guildMemberAdd', member => {
     const inviter = client.users.get(invite.inviter.id);
     const stewart = member.guild.channels.find("name", "chat");
      stewart.send(`<@${member.user.id}> invited By  <@${inviter.id}>`);
-   //  stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
+    stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
   }); 
 });
- 
+
 
 
 client.login(process.env.BOT_TOKEN);
