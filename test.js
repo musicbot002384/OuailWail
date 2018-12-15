@@ -205,7 +205,7 @@ client.on('guildMemberAdd', msg => {
   .addField('**ID Member:',"" +  msg.user.id, true)
   .addField('**Tag Member**', msg.user.discriminator, true)
   .addField('**Member Created At', msg.user.createdAt, true)
-  .addField(' 👤 by',`**[ ${msg.author.tag} ]**`,true)
+  .addField('**invite By',"" + msg.inviter.id, true)
   .setColor('GREEN')
   .setFooter(msg.guild.name, msg.guild.iconURL, true)
   var channel = msg.guild.channels.find('name', 'welcome')         
