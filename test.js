@@ -196,7 +196,7 @@ client.on('guildCreate', guild => {
 
 
 client.on('message', message => {
-  if (message.content.includes('discord.gg')){
+  if (message.content.includes('discord.gg','youtube.com')){
                       if(!message.channel.guild) return message.reply ('')
                   if (!message.member.hasPermissions(['MANAGE_MESSAGES'])){
      message.channel.send('ban <@' + message.author.id + '>')
