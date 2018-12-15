@@ -228,12 +228,12 @@ client.on('guildMemberAdd', (member) => {
          message.channel.sendMessage(`اضغط على الصح عشان تتفعل`).then(msg => {
          
          
-          msg.react(':__: ')
-         .then(() => msg.react(':__: '))
+          msg.react('✅ ')
+         .then(() => msg.react('✅'))
        
        
    
-         let activeFilter = (reaction, user) => reaction.emoji.name === ':__: ' && user.id === message.author.id;
+         let activeFilter = (reaction, user) => reaction.emoji.name === '✅ ' && user.id === message.author.id;
        
          let active = msg.createReactionCollector(activeFilter, { time: 15000 });
        
