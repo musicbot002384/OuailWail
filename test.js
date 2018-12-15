@@ -196,8 +196,6 @@ client.on('guildMemberAdd', member => { //LAST CODES -HONRAR-
   });
 })
  
-})
-
 
 
 client.login(process.env.BOT_TOKEN);
