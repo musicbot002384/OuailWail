@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const fs = require('fs');
-const util =require('util');
+const util = require ('util');
 const mmss = require('ms');
 const client = new Discord.Client();
 const prefix = '%'
