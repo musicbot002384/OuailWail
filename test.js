@@ -5,7 +5,7 @@ const client = new Discord.Client();
 const prefix = '%'
 
 client.on('ready', () => {
-  console.log(`Welcome Bro ${client.user.tag}!`);
+  console.log(`Welcome To Me ${client.user.tag}!`);
 });
 
 client.on('message', message => {
@@ -221,31 +221,7 @@ client.on('guildMemberAdd', (member) => {
                                      }
                                      });
 
-client.on('guildMemberAdd', member => {
-    let channel = member.guild.channels.find('name', 'chat');
-    let memberavatar = member.user.avatarURL
-      if (!channel) return;
-    let embed = new Discord.RichEmbed()
-        .setColor('PURPLE')
-        .setThumbnail(memberavatar)
-        .addField('🎽 | name :  ',`${member}`)
-        .addField('📢 | اطلق من دخل' , `Welcome to the server, ${member}`)
-        .addField('🆔 | user :', "**[" + `${member.id}` + "]**" )
-                .addField('➡| انت العضو رقم',`${member.guild.memberCount}`)
-               
-    .addField('من طرف :',`${inviter.id}`)
-    
-    .addField("Name:",`<@` + `${inviter.id}` + `>`, true)
-    
-                  .addField("Name:",`<@` + `${member.id}` + `>`, true)
-                     
-                                     .addField(' الـسيرفر', `${member.guild.name}`,true)
-                                       
-     .setFooter(`${member.guild.name}`)
-        .setTimestamp()
-   
-      channel.sendEmbed(embed);
-    });
+
    
 
 client.on('guildMemberAdd', member => { //LAST CODES -HONRAR-
