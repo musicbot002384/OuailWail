@@ -133,6 +133,7 @@ client.on("message", message => {
         message.delete();
         m.delete();
         message.member.addRole(message.guild.roles.find(c => c.name == "Shark"));
+        message.member.removeRole(messag.guild.roles.find(c => c.name =="فعل نفسك" ))
       }).catch(() => {
         m.edit(`You took to long to type the number.\nRe-type the command again if you want to verify yourself.`).then(m2 => m.delete(15000));
 });
