@@ -199,7 +199,7 @@ client.on('guildMemberAdd', msg => {
   var embed = new Discord.RichEmbed()
   .setAuthor(msg.user.username, msg.user.avatarURL)
   .setThumbnail(msg.user.avatarURL)
-  .setImage('رابط صوره')     
+  .setImage('https://cdn.pg.sa/gAJ9dDIkTO.png')     
   .setTitle('New Member!')
   .setDescription('Welcome To Sharks')
   .addField('**ID Member:',"" +  msg.user.id, true)
@@ -208,47 +208,11 @@ client.on('guildMemberAdd', msg => {
   .addField(' 👤 by',`**[ ${msg.author.tag} ]**`,true)
   .setColor('GREEN')
   .setFooter(msg.guild.name, msg.guild.iconURL, true)
-  var channel = msg.guild.channels.find('name', 'chat')         
+  var channel = msg.guild.channels.find('name', 'welcome')         
   if (!channel) return;
   channel.send({embed : embed});
   });
 
-  client.on('message', message => {
-    var prefix = "%"
-    if (message.author.x5bz) return;
-    if (!message.content.startsWith(prefix)) return;
-  
-    let command = message.content.split(" ")[0];
-    command = command.slice(prefix.length);
-  
-    let args = message.content.split(" ").slice(1);
-  
-    if (command == "kick") {
-                 if(!message.channel.guild) return message.reply('** This command only for servers**');
-           
-    if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("**You Don't Have ` KICK_MEMBERS ` Permission**");
-    if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("**I Don't Have ` KICK_MEMBERS ` Permission**");
-    let user = message.mentions.users.first();
-    let reason = message.content.split(" ").slice(2).join(" ");
-    if (message.mentions.users.size < 1) return message.reply("**ظ…ظ†ط´ظ† ط´ط®طµ**");
-    if(!reason) return message.reply ("**ط§ظƒطھط¨ ط³ط¨ط¨ ط§ظ„ط·ط±ط¯**");
-    if (!message.guild.member(user)
-    .kickable) return message.reply("**ظ„ط§ظٹظ…ظƒظ†ظ†ظٹ ط·ط±ط¯ ط´ط®طµ ط§ط¹ظ„ظ‰ ظ…ظ† ط±طھط¨طھظٹ ظٹط±ط¬ظ‡ ط§ط¹ط·ط§ط، ط§ظ„ط¨ظˆطھ ط±طھط¨ظ‡ ط¹ط§ظ„ظٹ**");
-  
-    message.guild.member(user).kick();
-  
-    const kickembed = new Discord.RichEmbed()
-    .setAuthor(`KICKED!`, user.displayAvatarURL)
-    .setColor("RANDOM")
-    .setTimestamp()
-    .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
-    .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
-    .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
-    message.channel.send({
-      embed : kickembed
-    })
-  }
-  });
 
 client.on('message', message => {
   var args = message.content.split(/[ ]+/)
@@ -268,46 +232,6 @@ client.on('message', message => {
   return message.reply(`** روابط اليوتيوب ممنوعة في السيرفر**`)
   }
 });
-
-client.on('message', msg => {
-
-  if (msg.content == '%join') {
-      if (msg.member.voiceChannel) {
-
-   if (msg.member.voiceChannel.joinable) {
-       msg.member.voiceChannel.join().then(msg.react('white_check_mark'));
-   }
-  }
-}
-})
-client.on('ready', () => { //code bot not leave room voice //Bot Is Online
-  client.channels.get("522426207401279498").join(); //by : Toxic Codes
-  });
-
-  client.on('message', msg => {
-    var prefix = "%";
-    if (msg.author.bot) return;
-    if (!msg.content.startsWith(prefix)) return;
-    let command = msg.content.split(" ")[0];
-    command = command.slice(prefix.length);
-    let args = msg.content.split(" ").slice(1);
-  
-      if(command === "clear") {
-          const emoji = client.emojis.find("name", "wastebasket")
-      let textxt = args.slice(0).join("");
-      if(msg.member.hasPermission("MANAGE_MESSAGES")) {
-      if (textxt == "") {
-          msg.delete().then
-      msg.channel.send("***```Supply A Number ًں‘Œ```***").then(m => m.delete(3000));
-  } else {
-      msg.delete().then
-      msg.delete().then
-      msg.channel.bulkDelete(textxt);
-          msg.channel.send("```Cleard: " + textxt + "\n Messages```").then(m => m.delete(3000));
-          }    
-      }
-  }
-  });
 
 
   client.on('message', async message => {
