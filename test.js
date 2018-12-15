@@ -40,7 +40,7 @@ client.on('message', message => {
    
       }
    
-      message.channel.send("" +${days} days, ${hours} hrs, ${minutes} , ${seconds} sec+ "");
+      message.channel.send("" +$days (days), $hours (hrs), $({minutes}) , $({seconds}) (sec)+ "");
    
   }
   });
