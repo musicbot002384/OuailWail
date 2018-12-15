@@ -1,9 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-client.on('ready', () => {
-        client.user.setGame(`Sharks`,'https://www.twitch.tv/TEST-Broadcast');
-          console.log('Im Ready!');
-  
+
 client.on('message', message => {
     var prefix = "%";
    
