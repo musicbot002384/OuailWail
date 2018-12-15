@@ -161,7 +161,7 @@ const mmss = require('ms');
             }
         });
 
-const client = new Discord.Client();
+client.on('message', message => {
 var prefix = "%";
 var adminprefix = '%'
 const developers = ["476577762396864512"]
