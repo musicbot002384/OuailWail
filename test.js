@@ -73,7 +73,7 @@ client.on('message', message=> {
   if (message.author.bot) return;
   if (message.isMentioned(client.user))
   {
-  message.reply(" البوت قيد العمل");
+  message.reply(" :shark: هلا انا بوت سيرفر شاركس");
   }
 });
 
@@ -215,7 +215,7 @@ client.on('guildMemberAdd', (member) => {
                                      message.member.addRole(message.guild.roles.find("name", "Shark"));
                                      message.member.removeRole(message.guild.roles.find("name", "not active"));
                                      msg.delete();
-                                     message.channel.send(`**تم تفعيلك استمتع.**`).then(m => m.delete(1000));
+                                     message.channel.send(`**تم تفعيلك .**`).then(m => m.delete(1000));
        
                                      })
                                      })
@@ -230,7 +230,7 @@ const invites = {};
 const wait = require('util').promisify(setTimeout);
 
 client.on('ready', () => {
-  wait(0);
+  wait(100);
 
   client.guilds.forEach(g => {
     g.fetchInvites().then(guildInvites => {
