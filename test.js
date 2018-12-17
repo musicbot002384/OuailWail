@@ -219,9 +219,8 @@ client.on('message', message => {
       if(msg.member.hasPermission("MANAGE_MESSAGES")) {
       if (textxt == "") {
           msg.delete().then
-      msg.channel.send("***```ضع عدد الرسائل التي تريد مسحها 👌```***").then(m => m.delete(3000));
+      msg.channel.send("***ضع عدد الرسائل التي تريد مسحها***").then(m => m.delete(3000));
   } else {
-      msg.delete().then
       msg.delete().then
       msg.channel.bulkDelete(textxt);
           msg.channel.send("```php\nعدد الرسائل التي تم مسحها: " + textxt + "\n```").then(m => m.delete(3000));
@@ -239,12 +238,12 @@ client.on('message', message => {
     let args = message.content.split(" ").slice(1);
     if (command == "mute") {
       if (!message.channel.guild) return;
-      if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.reply("انت لا تملك صلاحيات !! ").then(msg => msg.delete(5000));
-      if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return message.reply("البوت لايملك صلاحيات ").then(msg => msg.delete(5000));;
+      if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.reply("انت لا تملك صلاحيات !! ").then(msg => msg.delete(3000));
+      if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return message.reply("البوت لايملك صلاحيات ").then(msg => msg.delete(3000));;
       let user = message.mentions.users.first();
       let muteRole = message.guild.roles.find("name", "Muted");
-      if (!muteRole) return message.reply("** لا يوجد رتبة الميوت 'Muted' **").then(msg => {msg.delete(5000)});
-      if (message.mentions.users.size < 1) return message.reply('** يجب عليك المنشن اولاً **').then(msg => {msg.delete(5000)});
+      if (!muteRole) return message.reply("** لا يوجد رتبة الميوت 'Muted' **").then(msg => {msg.delete(3000)});
+      if (message.mentions.users.size < 1) return message.reply('** يجب عليك المنشن اولاً **').then(msg => {msg.delete(3000)});
       let reason = message.content.split(" ").slice(2).join(" ");
       message.guild.member(user).addRole(muteRole);
       const muteembed = new Discord.RichEmbed()
@@ -269,8 +268,8 @@ client.on('message', message => {
     user.send( muteembeddm);
     }
   if(command === `unmute`) {
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.sendMessage("**ليس لديك صلاحية لفك عن الشخص ميوت**:x: ").then(m => m.delete(5000));
-  if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return message.reply("**ما عندي برمشن**").then(msg => msg.delete(6000))
+    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.sendMessage("**ليس لديك صلاحية لفك عن الشخص ميوت**:x: ").then(m => m.delete(3000));
+  if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return message.reply("**ما عندي برمشن**").then(msg => msg.delete(3000))
   
     let toMute = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
     if(!toMute) return message.channel.sendMessage("**عليك المنشن أولاّ**:x: ");
