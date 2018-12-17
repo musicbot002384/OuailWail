@@ -219,11 +219,11 @@ client.on('message', message => {
       if(msg.member.hasPermission("MANAGE_MESSAGES")) {
       if (textxt == "") {
           msg.delete().then
-      msg.channel.send("***ضع عدد الرسائل التي تريد مسحها***").then(m => m.delete(1000));
+      msg.channel.send("***ضع عدد الرسائل التي تريد مسحها***").then(m => m.delete(3000));
   } else {
       msg.delete().then
       msg.channel.bulkDelete(textxt);
-          msg.channel.send("عدد الرسائل التي تم مسحها: " + textxt + "").then(m => m.delete(1000));
+          msg.channel.send("```php\nعدد الرسائل التي تم مسحها: " + textxt + "\n```").then(m => m.delete(3000));
           }    
       }
   }
@@ -246,7 +246,6 @@ client.on('message', message => {
       if (message.mentions.users.size < 1) return message.reply('** يجب عليك المنشن اولاً **').then(msg => {msg.delete(3000)});
       let reason = message.content.split(" ").slice(2).join(" ");
       message.guild.member(user).addRole(muteRole);
-      
       const muteembed = new Discord.RichEmbed()
       .setColor("RANDOM")
       .setAuthor(`Muted!`, user.displayAvatarURL)
@@ -256,13 +255,13 @@ client.on('message', message => {
       .addField("**:book:  السبب**", '**[ ' + `${reason}` + ' ]**',true)
       .addField("User", user, true)
       message.channel.send({embed : muteembed});
-      
       var muteembeddm = new Discord.RichEmbed()
       .setAuthor(`Muted!`, user.displayAvatarURL)
       .setDescription(`      
   ${user} انت معاقب بميوت كتابي بسبب مخالفة القوانين
   ${message.author.tag} تمت معاقبتك بواسطة
   [ ${reason} ] : السبب
+  اذا كانت العقوبة عن طريق الخطأ تكلم مع المسؤلين
   `)
       .setFooter(`في سيرفر : ${message.guild.name}`)
       .setColor("RANDOM")
@@ -296,37 +295,6 @@ client.on('message', message => {
     return message.reply(`** ممنوع نشر سيرفرات أخرى في سيرفرنا ! **`)
     }
 });
- 
-client.on('message', message => { 
-  if (message.content.startsWith(prefix + "id")) {
-var args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first();
-var men = message.mentions.users.first();
-var heg;
-if(men) {
-   heg = men
-} else {
-   heg = message.author
-}
-var mentionned = message.mentions.members.first();
-var h;
-if(mentionned) {
-   h = mentionned
-} else {
-   h = message.member
-}
-      moment.locale('ar-TN');
-var id = new  Discord.RichEmbed()
-.setAuthor(message.author.username, message.author.avatarURL) 
-.setColor("#707070")
-.addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true) 
-.addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)               
-.setFooter(`Last Bot`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')                                 
-.setThumbnail(heg.avatarURL);
-message.channel.send(id)
-}       });
- 
-
 
 client.on('message', message => {
     var args = message.content.split(/[ ]+/)
