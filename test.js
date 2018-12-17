@@ -148,10 +148,10 @@ client.on('message', message => {
   if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("**I Don't Have ` KICK_MEMBERS ` Permission**");
   let user = message.mentions.users.first();
   let reason = message.content.split(" ").slice(2).join(" ");
-  if (message.mentions.users.size < 1) return message.reply("**https://cdn.discordapp.com/attachments/498625534549295114/498825358682882059/kick_metion.png**");
-  if(!reason) return message.reply ("**https://cdn.discordapp.com/attachments/498625534549295114/498825956983701514/kick_reson.png**");
+  if (message.mentions.users.size < 1) return message.channel.send(`**https://cdn.discordapp.com/attachments/498625534549295114/498825358682882059/kick_metion.png**`);
+  if(!reason) return message.channel.send(`**https://cdn.discordapp.com/attachments/498625534549295114/498825956983701514/kick_reson.png**`);
   if (!message.guild.member(user)
-  .kickable) return message.reply("**This User Is Have High Role**");
+  .kickable) return message.channel.send(`**This User Is Have High Role**`);
 
   message.guild.member(user).kick();
 
