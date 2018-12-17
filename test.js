@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const fs = require('fs');
+const id = require('id')
 const util = require('util');
 const mmss = require('ms');
 const client = new Discord.Client();
