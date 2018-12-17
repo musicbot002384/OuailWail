@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const fs = require('fs');
-const id = require('id')
 const util = require('util');
 const mmss = require('ms');
 const client = new Discord.Client();
@@ -220,11 +219,11 @@ client.on('message', message => {
       if(msg.member.hasPermission("MANAGE_MESSAGES")) {
       if (textxt == "") {
           msg.delete().then
-      msg.channel.send("***ضع عدد الرسائل التي تريد مسحها***").then(m => m.delete(3000));
+      msg.channel.send("***ضع عدد الرسائل التي تريد مسحها***").then(m => m.delete(1000));
   } else {
       msg.delete().then
       msg.channel.bulkDelete(textxt);
-          msg.channel.send("```php\nعدد الرسائل التي تم مسحها: " + textxt + "\n```").then(m => m.delete(3000));
+          msg.channel.send("عدد الرسائل التي تم مسحها: " + textxt + "").then(m => m.delete(1000));
           }    
       }
   }
@@ -247,6 +246,7 @@ client.on('message', message => {
       if (message.mentions.users.size < 1) return message.reply('** يجب عليك المنشن اولاً **').then(msg => {msg.delete(3000)});
       let reason = message.content.split(" ").slice(2).join(" ");
       message.guild.member(user).addRole(muteRole);
+      
       const muteembed = new Discord.RichEmbed()
       .setColor("RANDOM")
       .setAuthor(`Muted!`, user.displayAvatarURL)
@@ -256,13 +256,13 @@ client.on('message', message => {
       .addField("**:book:  السبب**", '**[ ' + `${reason}` + ' ]**',true)
       .addField("User", user, true)
       message.channel.send({embed : muteembed});
+      
       var muteembeddm = new Discord.RichEmbed()
       .setAuthor(`Muted!`, user.displayAvatarURL)
       .setDescription(`      
   ${user} انت معاقب بميوت كتابي بسبب مخالفة القوانين
   ${message.author.tag} تمت معاقبتك بواسطة
   [ ${reason} ] : السبب
-  اذا كانت العقوبة عن طريق الخطأ تكلم مع المسؤلين
   `)
       .setFooter(`في سيرفر : ${message.guild.name}`)
       .setColor("RANDOM")
