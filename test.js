@@ -363,7 +363,7 @@ client.on('message', message => {
     .addField("User:",  `[ + ${user.tag} + ]`)
     .addField("By:", `[  + ${message.author.tag} +  ]`)
     .addField("Reason:", `[ + ${reason} +  ]`)
-    client.channels.get("522480131290300418").send({embed : banembed})
+    client.channels.get("522425706421157918").send({embed : banembed})
   }
   });
 
@@ -411,7 +411,7 @@ const invites = {};
 const wait = require('util').promisify(setTimeout);
 
 client.on('ready', () => {
-  wait(0);
+  wait(50);
 
   client.guilds.forEach(g => {
     g.fetchInvites().then(guildInvites => {
