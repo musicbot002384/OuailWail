@@ -333,7 +333,6 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-  const prefix = "+";
     if (message.author.kick) return;
     if (!message.content.startsWith(prefix)) return;
   
@@ -364,7 +363,7 @@ client.on('message', message => {
     .addField("User:",  `[ + ${user.tag} + ]`)
     .addField("By:", `[  + ${message.author.tag} +  ]`)
     .addField("Reason:", `[ + ${reason} +  ]`)
-    client.channels.get("492086928397565952").send({embed : banembed})
+    client.channels.get("522480131290300418").send({embed : banembed})
   }
   });
 
