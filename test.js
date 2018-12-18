@@ -398,7 +398,7 @@ client.on('message', function(message) {
    message.member.addRole(message.guild.roles.find('name', 'Muted'));
   const embed500 = new Discord.RichEmbed()
     .setTitle(":x: | تمت معاقبتك")
-          .addField(`** لقد قمت بمخالفة قوانين السيرفر من خلال نشر سيرفرات اخرى  **` , `**ملاحظة  : إن كآن هذآ الميوت عن طريق الخطأ تكلم مع الادآرة**`)
+          .addField(`** لقد قمت بمخالفة قوانين السيرفر من خلال نشر روابط فيديو اخرى  **` , `**ملاحظة  : إن كآن هذآ الميوت عن طريق الخطأ تكلم مع الادآرة**`)
     .addField(`by`, `[  + ${message.author.tag} +  ]`)
           .setColor("c91616")
           .setThumbnail(`${message.author.avatarURL}`)
