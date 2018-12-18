@@ -267,24 +267,6 @@ client.on('guildCreate', guild => {
   .setDescription(`**شكراً لك لإضافه البوت الى سيرفرك**`)
       guild.owner.send(embed)
 });
-  
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('discord.gg')){
-        if(!message.channel.guild) return;
-        message.delete()
-    return message.reply(`** ممنوع نشر سيرفرات أخرى في سيرفرنا ! **`)
-    }
-});
-
-client.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('youtube.com')){
-        if(!message.channel.guild) return;
-        message.delete()
-    return message.reply(`** ممنوع روابط يوتيوب بالسيرفر! **`)
-    }
-});
 
 client.on('message', msg => {
 	var prefix = "%";
@@ -385,7 +367,49 @@ client.on('message', message => {
   }
   });
 
+  client.on('message', function(message) {
+    if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+            let command = message.content.split(" ")[0];
+        if(message.content.includes('discord.gg')){
+        message.reply (' ')
+           if(!message.channel.guild) return message.reply('** This command only for servers**');
+     message.member.addRole(message.guild.roles.find('name', 'Muted'));
+    const embed500 = new Discord.RichEmbed()
+      .setTitle(":x: | تمت معاقبتك")
+            .addField(`** لقد قمت بمخالفة قوانين السيرفر من خلال نشر سيرفرات اخرى  **` , `**ملاحظة  : إن كآن هذآ الميوت عن طريق الخطأ تكلم مع الادآرة**`)
+      .addField(`by`, `[  + ${message.author.tag} +  ]`)
+            .setColor("c91616")
+            .setThumbnail(`${message.author.avatarURL}`)
+            .setAuthor(message.author.username, message.author.avatarURL)
+        .setFooter(`${message.guild.name} Server`)
+     message.channel.send(embed500)
+   
+       
+    }
+    }
+})
 
+client.on('message', function(message) {
+  if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+          let command = message.content.split(" ")[0];
+      if(message.content.includes('youtube.com')){
+      message.reply (' ')
+         if(!message.channel.guild) return message.reply('** This command only for servers**');
+   message.member.addRole(message.guild.roles.find('name', 'Muted'));
+  const embed500 = new Discord.RichEmbed()
+    .setTitle(":x: | تمت معاقبتك")
+          .addField(`** لقد قمت بمخالفة قوانين السيرفر من خلال نشر سيرفرات اخرى  **` , `**ملاحظة  : إن كآن هذآ الميوت عن طريق الخطأ تكلم مع الادآرة**`)
+    .addField(`by`, `[  + ${message.author.tag} +  ]`)
+          .setColor("c91616")
+          .setThumbnail(`${message.author.avatarURL}`)
+          .setAuthor(message.author.username, message.author.avatarURL)
+      .setFooter(`${message.guild.name} Server`)
+   message.channel.send(embed500)
+ 
+     
+  }
+  }
+})
 
 client.on('guildMemberAdd', (member) => {
   member.addRole(member.guild.roles.find('name', 'not active'));
@@ -462,6 +486,21 @@ client.on('guildMemberAdd', member => {
      stewart.send(`<@${member.user.id}> **invite By:**  <@${inviter.id}>`);
     // stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
   }); 
+});
+
+client.on('message', message => {
+  if (message.content === "%id") {
+  let embed = new Discord.RichEmbed()
+ .setColor("RANDOM")
+ .setThumbnail(message.author.avatarURL)
+ .addField("Name:",`${message.author.username}`, true)
+ .addField('Discrim:',"#" +  message.author.discriminator, true)
+ .addField("ID:", message.author.id, true)
+ .addField("Create At:", message.author.createdAt, true)
+    
+    
+ message.channel.sendEmbed(embed);
+   }
 });
 
 
