@@ -420,6 +420,21 @@ client.on('ready', () => {
   });
 });
 
+client.on('message', message => {
+	const args = message.content.slice(prefix.length).trim().split(/ +/g);
+const command = args.shift().toLowerCase();
+    if (command === "bans") { // الامر
+        message.delete(5000)
+         if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return message.reply("Error : \` I Dont Have ADMINISTRATOR Permission\`").then(message => message.delete(5000));
+        if(!message.member.hasPermission('ADMINISTRATOR')) return;
+        if(!message.channel.guild) return;
+        message.guild.fetchBans()
+        .then(bans => message.channel.send(`\`${bans.size}\` ***: عدد الاشخاص المبندين من السيرفر ***`)).then(message => message.delete(5000))
+ 
+  .catch(console.error);
+}
+});
+
 client.on('guildMemberAdd', member => {
   member.guild.fetchInvites().then(guildInvites => {
     const ei = invites[member.guild.id];
