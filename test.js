@@ -56,19 +56,6 @@ if (message.content.startsWith(prefix + 'setgame')) {
 
 });
 
-client.on("message", message => {
-    if (message.content.startsWith("%bc")) {
-                 if (!message.member.hasPermission("ADMINISTRATOR"))  return;
-  let args = message.content.split(" ").slice(1);
-  var argresult = args.join(' ');
-  message.guild.members.filter(m => m.presence.status !== 'all').forEach(m => {
-  m.send(`${argresult}\n ${m}`);
-  })
-  message.channel.send(`\`${message.guild.members.filter( m => m.presence.status !== 'all').size}\`:mailbox:  عدد المستلمين `);
-  message.delete();
-  };
-  });
-
 client.on('message', message=> {
   if (message.author.bot) return;
   if (message.isMentioned(client.user))
@@ -454,7 +441,29 @@ client.on('message', function(message) {
     const embed500 = new Discord.RichEmbed()
       .setTitle(":x: | تمت معاقبتك")
             .addField(`** لقد قمت بمخالفة قوانين السيرفر من خلال نشر سيرفرات اخرى  **` , `**ملاحظة  : إن كآن هذآ الميوت عن طريق الخطأ تكلم مع الادآرة**`)
-      .addField(`by`,`iMr.KBOOSH`)
+      .addField(`by`,`SharkBot`)
+            .setColor("c91616")
+            .setThumbnail(`${message.author.avatarURL}`)
+            .setAuthor(message.author.username, message.author.avatarURL) 
+        .setFooter(`${message.guild.name} Server`)
+     message.channel.send(embed500) 
+    
+        
+    }
+    }
+})
+
+client.on('message', function(message) {
+    if (!message.member.hasPermissions(['ADMINISTRATOR'])){
+            let command = message.content.split(" ")[0];
+        if(message.content.includes('youtube.com')){
+        message.reply (' ')
+           if(!message.channel.guild) return message.reply('** This command only for servers**');
+     message.member.addRole(message.guild.roles.find('name', 'Muted')); 
+    const embed500 = new Discord.RichEmbed()
+      .setTitle(":x: | تمت معاقبتك")
+            .addField(`** لقد قمت بمخالفة قوانين السيرفر من خلال نشر روابط يوتيوب  **` , `**ملاحظة  : إن كآن هذآ الميوت عن طريق الخطأ تكلم مع الادآرة**`)
+      .addField(`by`,`SharkBot`)
             .setColor("c91616")
             .setThumbnail(`${message.author.avatarURL}`)
             .setAuthor(message.author.username, message.author.avatarURL) 
