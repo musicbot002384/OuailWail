@@ -132,7 +132,7 @@ client.on('guildMemberAdd', msg => {
     });
 
 client.on("guildMemberAdd", m => {
-    if (datediff(parseDate(moment(m.user.createdTimestamp).format('l')), parseDate(moment().format('l'))) < 8) {
+    if (datediff(parseDate(moment(m.user.createdTimestamp).format('l')), parseDate(moment().format('l'))) < 30) {
         m.ban();
     };
     function parseDate(str) {
