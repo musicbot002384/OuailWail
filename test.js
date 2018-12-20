@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const util = require('util');
 const mmss = require('ms');
+const antispam = require("anti-spam"); 
 const client = new Discord.Client();
 const prefix = '%'
 
@@ -474,6 +475,20 @@ client.on('message', function(message) {
     }
     }
 })
+
+var antispam = require("anti-spam"); //npm i anti-spam
+ 
+antispam(client, {
+  warnBuffer: 3, //الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على تحذير.
+  maxBuffer: 5, // الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على ميوت.
+  interval: 1000, // مقدار الوقت قبل حصول باند
+  warningMessage: "وقف سبام عشان ما تبلع ميوت", // رسالة تحذير اذا سوا سبام!
+  roleMessage: "مبروك الميوت", // الرسالة الي تجي اذا شخص اخذ ميوت
+  roleName: "Muted", // اسم رتبة الميوت
+  maxDuplicatesWarning: 7, // عدد الرسايل الي قبل التحذيرات
+  maxDuplicatesBan: 10, // عدد الرسايل الي يقدر المستخدم يرسلها قبل الميوت
+  time: 60, // عدد الوقت الي يجلس لين تسحب رتبة الميوت من الشخص الحسبة برمجية وليست كتابية
+});
 
 client.on('message', message => {
   if (message.content === "%id") {
