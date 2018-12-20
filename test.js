@@ -3,7 +3,6 @@ const fs = require('fs');
 const util = require('util');
 const mmss = require('ms');
 const moment = require("moment");
-var antispam = require("anti-spam");
 const client = new Discord.Client();
 const prefix = '%'
 
@@ -113,24 +112,6 @@ client.on('message', function(msg) {
     msg.channel.send({embed:embed});
   }
 });
-
-client.on('guildMemberAdd', msg => { 
-    var embed = new Discord.RichEmbed()
-    .setAuthor(msg.user.username, msg.user.avatarURL)
-    .setThumbnail(msg.user.avatarURL) 
-    .setImage('https://cdn.pg.sa/gAJ9dDIkTO.png')
-    .setTitle('New Member!')
-    .setDescription('Welcome To Sharks')
-    .addField('**ID Member:',"" +  msg.user.id, true)
-    .addField('**Tag Member**', msg.user.discriminator, true)
-    .addField('**Member Created At', msg.user.createdAt, true)
-    .addField(' 👤   You Number',`**[ ${msg.guild.memberCount} ]**`,true)
-    .setColor('GREEN')
-    .setFooter(msg.guild.name, msg.guild.iconURL, true)
-    var channel = msg.guild.channels.find('name', 's_chat')         
-    if (!channel) return;
-    channel.send({embed : embed});
-    });
 
 client.on("guildMemberAdd", m => {
     if (datediff(parseDate(moment(m.user.createdTimestamp).format('l')), parseDate(moment().format('l'))) < 30) {
@@ -491,25 +472,12 @@ client.on('message', function(message) {
     }
 })
 
- 
-antispam(client, {
-  warnBuffer: 2, //الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على تحذير.
-  maxBuffer: 3, // الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على ميوت.
-  interval: 1000, // مقدار الوقت قبل حصول باند
-  warningMessage: "وقف سبام عشان ما تبلع ميوت", // رسالة تحذير اذا سوا سبام!
-  roleMessage: "مبروك الميوت", // الرسالة الي تجي اذا شخص اخذ ميوت
-  roleName: "Muted", // اسم رتبة الميوت
-  maxDuplicatesWarning: 3, // عدد الرسايل الي قبل التحذيرات
-  maxDuplicatesBan: 5, // عدد الرسايل الي يقدر المستخدم يرسلها قبل الميوت
-  time: 10800, // عدد الوقت الي يجلس لين تسحب رتبة الميوت من الشخص الحسبة برمجية وليست كتابية
-});
-
 client.on('message', message => {
   if (message.content === "%id") {
   let embed = new Discord.RichEmbed()
  .setColor("RANDOM")
  .setThumbnail(message.author.avatarURL)
- .addField("Name:",`${message.author.username}`, true)
+ .addField("Name:",`<@${message.author.username}>`, true)
  .addField('Discrim:',"#" +  message.author.discriminator, true)
  .addField("ID:", message.author.id, true)
  .addField("Create At:", message.author.createdAt, true)
