@@ -67,7 +67,7 @@ client.on('message', message=> {
 
 client.on('message', message => {
  
-  if (message.content === "%قفل") {
+  if (message.content === "%close") {
                       if(!message.channel.guild) return message.reply(' This command only for servers');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
@@ -79,7 +79,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' لي
          });
            }
 
-if (message.content === "%افتح") {
+if (message.content === "%open") {
   if(!message.channel.guild) return message.reply(' This command only for servers');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات');
@@ -354,23 +354,7 @@ client.on('message', message => {
 client.on('guildMemberAdd', (member) => {
   member.addRole(member.guild.roles.find('name', 'not active'));
   });
-   
-  client.on('message', message => {
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-      if (command === "bans") { // الامر
-          message.delete(5000)
-           if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return message.reply("Error : \` I Dont Have ADMINISTRATOR Permission\`").then(message => message.delete(5000));
-          if(!message.member.hasPermission('ADMINISTRATOR')) return;
-          if(!message.channel.guild) return;
-          message.guild.fetchBans()
-          .then(bans => message.channel.send(`\`${bans.size}\` ***: عدد الاشخاص المبندين من السيرفر ***`)).then(message => message.delete(5000))
-   
-    .catch(console.error);
-  }
-  });
-  
-  
+
   client.on('message', message => {                      
       if(!message.channel.guild) return;
          if(message.content.startsWith(prefix + 'active')) {
@@ -408,7 +392,7 @@ const invites = {};
 const wait = require('util').promisify(setTimeout);
 
 client.on('ready', () => {
-  wait(50);
+  wait(100);
 
   client.guilds.forEach(g => {
     g.fetchInvites().then(guildInvites => {
@@ -427,6 +411,21 @@ client.on('guildMemberAdd', member => {
     // stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
   }); 
 });
+
+client.on('message', message => {
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+      if (command === "bans") { // الامر
+          message.delete(5000)
+           if(!message.guild.member(client.user).hasPermission("ADMINISTRATOR")) return message.reply("Error : \` I Dont Have ADMINISTRATOR Permission\`").then(message => message.delete(5000));
+          if(!message.member.hasPermission('ADMINISTRATOR')) return;
+          if(!message.channel.guild) return;
+          message.guild.fetchBans()
+          .then(bans => message.channel.send(`\`${bans.size}\` ***: عدد الاشخاص المبندين من السيرفر ***`)).then(message => message.delete(5000))
+   
+    .catch(console.error);
+  }
+  });
 
 client.on('message', function(message) {
     if (!message.member.hasPermissions(['ADMINISTRATOR'])){
