@@ -312,7 +312,14 @@ client.on('message', message => {
   .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
   message.channel.send({
     embed : banembed
-  })
+  });
+    let thisEmbed = new Discord.RichEmbed()
+    .setAuthor(`BANNED!`, user.displayAvatarURL)
+  .setColor("RANDOM")
+  .setTimestamp()
+  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
+  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
+  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
 }
 });
 
@@ -348,8 +355,16 @@ client.on('message', message => {
     .addField("By:", `[  + ${message.author.tag} +  ]`)
     .addField("Reason:", `[ + ${reason} +  ]`)
     client.channels.get("522425706421157918").send({embed : banembed})
-  }
-  });
+
+  let thisEmbed = new Discord.RichEmbed()
+  .setAuthor(`KICK!`, user.displayAvatarURL)
+.setColor("RANDOM")
+.setTimestamp()
+.addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
+.addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
+.addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
+}
+});
 
 client.on('guildMemberAdd', (member) => {
   member.addRole(member.guild.roles.find('name', 'not active'));
