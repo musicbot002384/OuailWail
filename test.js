@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const fs = require('fs');
 const util = require('util');
 const mmss = require('ms');
-const antispam = require("anti-spam"); 
+var antispam = require("anti-spam");
 const client = new Discord.Client();
 const prefix = '%'
 
@@ -476,7 +476,6 @@ client.on('message', function(message) {
     }
 })
 
-var antispam = require("anti-spam"); //npm i anti-spam
  
 antispam(client, {
   warnBuffer: 3, //الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على تحذير.
