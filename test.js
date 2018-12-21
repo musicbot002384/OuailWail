@@ -57,6 +57,55 @@ if (message.content.startsWith(prefix + 'setgame')) {
 
 });
 
+client.on('message', message => {
+  if (message.author.bot) return;
+   if (message.content === prefix + "help") {
+    if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
+   message.channel.send('**تم ارسال رسالة في الخاص**');
+
+
+
+
+message.author.sendMessage(`
+**
+[❖═════ Commands ═══════❖]
+%cl = تقفل الشات
+%op = تفتح الشات
+%server = معلومات السيرفر
+%mute =  -تعطي شخص ميوت -لازم تذكر السبب و مدت الميوت 
+%unmute = تفك الميوت
+%clear = مسح الشات
+%ban =  -تعطي شخص باند - لازم تذكر السبب
+%kick = -تطرد شخص - لازم تذكر السبب-
+%bans = عدد الأشخاص المبندين من السيرفر
+%id = أيدي حقك 
+ ملاحظات
+1- الي حسابو أقل من شهر راح يتبند تلقائي من البوت
+2- إذا تمنشن البوت راح يرد عليك
+3-الي ينشر روابط ديسكورد أو يوتيوب راح يبلع ميوت
+4-%active اول ما يدخل شخص لازم يفعل نفسو بالأمر 
+**`);
+
+  }
+});
+
+client.on('message', message => {
+  if (message.content.startsWith(prefix +"avatar")) {
+if(!message.channel.guild) return;
+      var mentionned = message.mentions.users.first();
+  var client;
+    if(mentionned){
+        var client = mentionned; } else {
+        var client = message.author;
+    }
+      const embed = new Discord.RichEmbed()
+                         .addField('Requested by:', "<@" + message.author.id + ">")
+      .setColor(000000)
+      .setImage(`${client.avatarURL}`)
+    message.channel.sendEmbed(embed);
+  }
+});
+
 client.on('message', message=> {
   if (message.author.bot) return;
   if (message.isMentioned(client.user))
