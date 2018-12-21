@@ -3,7 +3,9 @@ const fs = require('fs');
 const util = require('util');
 const mmss = require('ms');
 const moment = require("moment");
+const dateFormat = require('dateformat');
 const client = new Discord.Client();
+const Canvas = require("canvas");
 const prefix = '%'
 
 client.on('ready', () => {
