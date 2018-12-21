@@ -68,7 +68,7 @@ client.on('message', message => {
 
 
 
-message.author.sendMessage(`
+message.author.send(`
 **
 [❖═════ Commands ═══════❖]
 %cl = تقفل الشات
