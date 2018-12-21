@@ -61,13 +61,13 @@ client.on('message', message=> {
   if (message.author.bot) return;
   if (message.isMentioned(client.user))
   {
-  message.reply(" البوت قيد العمل");
+  message.reply(" **هلا**");
   }
 });
 
 client.on('message', message => {
  
-  if (message.content === "%close") {
+  if (message.content === "%cl") {
                       if(!message.channel.guild) return message.reply(' This command only for servers');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
@@ -79,7 +79,7 @@ if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' لي
          });
            }
 
-if (message.content === "%open") {
+if (message.content === "%op") {
   if(!message.channel.guild) return message.reply(' This command only for servers');
 
 if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات');
