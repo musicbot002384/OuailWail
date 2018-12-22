@@ -520,7 +520,7 @@ client.on('message', function(message) {
       let messageReason = message.content.split(" ").slice(2).join(" ");
       if(!messageReason) return message.reply("**# Specify a reason!**");
   let mUser = message.mentions.users.first();
-  if(!mUser) return message.channel.send("525863939683123232");
+  if(!mUser) return message.channel.send("Couldn't find user.");
   let Rembed = new Discord.RichEmbed()
   .setTitle("`New Report!`")
   .setThumbnail(message.author.avatarURL)
