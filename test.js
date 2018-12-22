@@ -62,7 +62,6 @@ if (message.content.startsWith(prefix + 'setgame')) {
 client.on('message', message => {
   if (message.author.bot) return;
    if (message.content === prefix + "help") {
-    if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**هذا الامر يتطلب صلاحية** `ADMINISTRATOR`' );
    message.channel.send('**تم ارسال رسالة في الخاص**');
 
 
@@ -82,6 +81,9 @@ message.author.send(`
 %bans = عدد الأشخاص المبندين من السيرفر
 %id = أيدي حقك 
 %avatar = الافاتار حقك
+%report = للتبليغ على شخص
+%contact = للتواصل مع صاحب البوت
+%invites = كم شخص دخلت
  ملاحظات
 1- الي حسابو أقل من شهر راح يتبند تلقائي من البوت
 2- إذا تمنشن البوت راح يرد عليك
@@ -605,7 +607,7 @@ if (!message.channel.guild) return;
      .setAuthor(message.author.username, message.author.avatarURL)
      .setDescription(':mailbox_with_mail: تم ارسال الرسالة الى صاحب البوت بنجاح')
      .setThumbnail(message.author.avatarURL)
-     .setFooter("By : IiMr7MoDyX")
+     .setFooter("By : OUAIL")
                                                 
  message.channel.send(embed);
  }
