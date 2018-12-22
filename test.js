@@ -62,6 +62,7 @@ if (message.content.startsWith(prefix + 'setgame')) {
 client.on('message', message => {
   if (message.author.bot) return;
    if (message.content === prefix + "help") {
+    if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**هذا الامر يتطلب صلاحية** `ADMINISTRATOR`' );
    message.channel.send('**تم ارسال رسالة في الخاص**');
 
 
