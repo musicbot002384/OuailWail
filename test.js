@@ -537,7 +537,7 @@ client.on('message', function(message) {
   .addField("**# - Reason:**",messageReason,true)
   .addField("**# - Channel:**",message.channel,true)
   .addField("**# - Time:**",message.createdAt,true)
-  .addFieald("**# - Report By:**",message.author.username,true)
+  .addField("**# - By:**",message.author.user,true)
   .setFooter("لو ان الابلاغ فيه مزح راح يتعرض صاحب الابلاغ لقوبات")
 message.channel.send(Rembed)
 message.channel.send("__Are you sure you want to send this to the Server owner??__").then(msg => {
