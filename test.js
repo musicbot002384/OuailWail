@@ -265,8 +265,8 @@ client.on("message", message => {
             if(message.content.startsWith("%تقديم")) {
         if(!message.channel.guild) return;
                 if(message.author.bot) return;
-        let channel = message.guild.channels.find("name", "التقديمات")
-            if(!channel) return message.reply("**لانشاء روم التقديمات !!setsubmissions من فضلك اكتب الامر**")
+        let channel = message.guild.channels.find("name", "التقديم")
+            if(!channel) return message.reply("**للتقديم إذهب لروم التقديم**")
             if(channel) {
             message.channel.send( message.member + ', **:timer:**').then( (m) =>{
               m.edit( message.member + ', **اسمك **' )
