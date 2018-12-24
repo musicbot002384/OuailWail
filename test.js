@@ -8,6 +8,15 @@ const client = new Discord.Client();
 const Canvas = require("canvas");
 const prefix = '%'
 
+client.on("message", message => {
+  var prefix = "$";
+          if(message.content.startsWith(prefix + "say")) {
+      if(message.author.id !== "476577762396864512") return message.reply("هذا الامر لصحاب البوت فقط");
+          let args = message.content.split(" ").slice(1);
+  message.channel.send(args)
+          }
+  });
+
 client.on('ready', () => {
   console.log(`Welcome To Me ${client.user.tag}!`);
 });
@@ -766,42 +775,26 @@ client.on('message', message => {
     }
 })
 
-client.on('message', function(message) {
-  if(message.content.startsWith(prefix + "report")) {
-      let messageArgs = message.content.split(" ").slice(1).join(" ");
-      let messageReason = message.content.split(" ").slice(2).join(" ");
-      if(!messageReason) return message.reply("**# Specify a reason!**");
-  let mUser = message.mentions.users.first();
-  if(!mUser) return message.channel.send("Couldn't find user.");
-  let Rembed = new Discord.RichEmbed()
-  .setTitle("`New Report!`")
-  .setThumbnail(message.author.avatarURL)
-  .addField("**# - Reported User:**",mUser,true)
-  .addField("**# - Reported User ID:**",mUser.id,true)
-  .addField("**# - Reason:**",messageReason,true)
-  .addField("**# - Channel:**",message.channel,true)
-  .addField("**# - Time:**",message.createdAt,true)
-  .addField("**# - By:**",message.author.tag,true)
-  .setFooter("لو ان الابلاغ فيه مزح راح يتعرض صاحب الابلاغ لقوبات")
-message.channel.send(Rembed)
-message.channel.send("__Are you sure you want to send this to the Server owner??__").then(msg => {
-  msg.react("✅")
-  msg.react("❌")
-.then(() => msg.react('❌'))
-.then(() =>msg.react('✅'))
-let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
-let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
-
-let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
-let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
-reaction1.on("collect", r => {
-  message.guild.owner.send(Rembed)
-  message.reply("**# - Done! 🎇**");
-})
-reaction2.on("collect", r => {
-  message.reply("**# - Canceled!**");
-})
-})
+var prefix = "%";
+if(message.author.bot) return;
+var name1 = message.mentions.users.first();
+var reason = message.content.split(' ').slice(2).join(' ');
+if(message.content.startsWith(prefix + 'report')) {
+    if(message.author.bot) return;
+    if(!message.guild.channels.find('name', 'report')) return message.channel.send('**نرجو عمل روم باسم report**').then(msg => msg.delete(5000));
+if(!name1) return message.reply('**:innocent:منشن:innocent:**').then(msg => msg.delete(3000))
+    message.delete();
+if(!reason) return message.reply('**:innocent:وش سوى؟:innocent:**').then(msg => msg.delete(3000))
+    message.delete();
+var abod = new Discord.RichEmbed()
+.setTitle(`بلاغ من قبل: ${message.author.tag}`)
+.addField('**المجرم:**', `${name1}`, true)
+.addField('**بروم:**', `${message.channel.name}`, true)
+.addField('**البلاغ:**', `${reason}`, true)
+.setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+.setTimestamp()
+    message.guild.channels.find('name', 'report').sendEmbed(abod)
+message.reply('**:sunglasses:بنأخذ حقك:sunglasses:**').then(msg => msg.delete(3000));
 }
 });
 
@@ -890,30 +883,15 @@ if (!message.channel.guild) return;
     
 });
 
-const invites = {};
-
-const wait = require('util').promisify(setTimeout);
-
-client.on('ready', () => {
-  wait(100);
-  client.guilds.forEach(g => {
-    g.fetchInvites().then(guildInvites => {
-      invites[g.id] = guildInvites;
-    });
-  });
-});
-
 client.on('guildMemberAdd', member => {
   member.guild.fetchInvites().then(guildInvites => {
     const ei = invites[member.guild.id];
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id);
-    const stewart = member.guild.channels.find("name", "chat-space");
-     stewart.send(`<@${member.user.id}> **invite By:**  <@${inviter.id}>`);
-    // stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
-  }); 
+    const channel = member.guild.channels.find("name", "chat-space");
+     channel.send(`<@${member.user.id}> ** joined; ** Invited by ** <@${inviter.id}> ** `);
+  });
 });
-})
 
 
 
