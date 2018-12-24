@@ -775,7 +775,7 @@ client.on('message', message => {
     }
 })
 
-var prefix = "%";
+client.on('message', function(message) {
 if(message.author.bot) return;
 var name1 = message.mentions.users.first();
 var reason = message.content.split(' ').slice(2).join(' ');
