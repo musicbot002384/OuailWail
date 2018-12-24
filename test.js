@@ -892,6 +892,7 @@ client.on('guildMemberAdd', member => {
      channel.send(`<@${member.user.id}> ** joined; ** Invited by ** <@${inviter.id}> ** `);
   });
 });
+})
 
 
 
