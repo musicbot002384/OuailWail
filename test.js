@@ -80,7 +80,7 @@ client.on('guildMemberAdd',async member => {
           ctx.clip();
           ctx.drawImage(ava, 36, 21, 260, 260);
            
-    let channel = member.guild.channels.find('name', 'chat-sharks');
+    let channel = member.guild.channels.find('name', 'welcome');
           client.sendFile(canvas.toBuffer());
  
 });
@@ -801,7 +801,7 @@ message.channel.send({embed});
 });
 
 client.on("guildMemberAdd", (member) => {
-  let channel = member.guild.channels.find('name', 'chat-sharks'); //OUAIL
+  let channel = member.guild.channels.find('name', 'welcome'); //OUAIL
   if(!channel) {
     console.log("!channel fails"); //OUAIL
     return;
