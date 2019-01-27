@@ -29,8 +29,6 @@ ${args}
 client.on('ready', () => {
   console.log(`Welcome To Me ${client.user.tag}!`);
   console.log('----------------');
-  console.log(`ON ${client.guild.size} Servers`);
-  console.log('----------------');
   client.user.setGame(`By : OUAIL#0090`,"https://www.twitch.tv/peery13");
       client.user.setStatus("dnd");
 });
