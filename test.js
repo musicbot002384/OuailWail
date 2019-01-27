@@ -8,99 +8,113 @@ const client = new Discord.Client();
 const Canvas = require("canvas");
 const prefix = '%'
 
+client.on('guildCreate', guild => {
+  client.channels.get("476577762396864512").send(`:white_check_mark: **تم اضافة البوت في سيرفر جديد مبروكك
+Server name: __${guild.name}__
+Server owner: __${guild.owner}__
+Server id: __${guild.id}__ 
+Server Count: __${guild.memberCount}__**`)
+});
+client.on('guildDelete', guild => {
+  client.channels.get("476577762396864512").send(`:negative_squared_cross_mark: **طردوني حرام والله ايش سويت انا
+Server name: __${guild.name}__
+Server owner: __${guild.owner}__
+Server id: __${guild.id}__ 
+Server Count: __${guild.memberCount}__**`)
+});
+
+client.on('message', msg => {
+  var prefix = "%";
+    if(msg.author.bot) return;
+      if(msg.content.startsWith(prefix + "owner")) {
+        let args = msg.content.split(" ").slice(1);
+           if(!args[0]) {
+            msg.channel.send("** %owner <message> **")
+                return;
+                  }
+                   var rebel = new Discord.RichEmbed()
+                      .setColor("RANDOM")
+                        .setDescription(`
+تم إرسآل لك رسآلة من السيرفر الخاص بك
+${msg.guild.name}
+الرسآلة
+${args}
+        `)
+        .setFooter(` بوآسطة ${msg.author.username}#${msg.author.discriminator}`)
+        msg.guild.owner.send(rebel);
+        msg.channel.send("**تم إرسآل الرسآلة إلى أونر السيرفر**")
+                }
+});
+
 client.on('ready', () => {
   console.log(`Welcome To Me ${client.user.tag}!`);
+  console.log('----------------');
+  console.log(`ON ${client.guild.size} Servers`);
+  console.log('----------------');
+  client.user.setGame(`By : OUAIL#0090`,"https://www.twitch.tv/peery13");
+      client.user.setStatus("dnd");
+});
+
+client.on("message", message => {
+    if (message.content === (prefix + "help")) {
+     const embed = new Discord.RichEmbed() 
+         .setColor("#580e6b")
+         .setThumbnail(message.author.avatarURL)
+         .setDescription(`**
+         ======={MEMBER COMMAD}=======
+         %avatar : عرض الآفاتار حقك
+         %owner : رسالة لصاحب السيرفر
+         %server : معلومات عن السيرفر
+         %تقديم : \n التقديم للإدارة
+         %invites : كم شخص دخلت للسيرفر
+         %ping : بنق البوت
+         %help : عرض هذه الرسالة
+         %report : التبليغ عن مخالفة او أي شيء
+         ======={ADMIN COMMAD}=======
+         %cl : تقفل الشات
+         %op : تفتح الشات
+         -----------------------------
+         %روم1 :\n عمل روم التقديمات
+         %روم2 :\n عمل روم القبول و الرفض
+         %قبول :\n تقبل التقديم
+         %رفض :\n ترفض التقديم
+         %mute : تعطي شخص ميوت
+         %unmute : فك الميوت من شخص
+         %kick : تطرد شخص من السيرفر
+         %ban : تبند شخص
+         %bans : الناس المبندبن من السيرفر
+         ======={INFO}=======
+         منشن البوت يرد عليك
+         لو حسابك أقل من أسبوع راح يتبند
+         ويــوجد ميــزات كــثير
+
+       **  `)
+   message.author.sendEmbed(embed)
+   
+   }
+   });  
+client.on('message', message => {
+     if (message.content === (prefix + "help")) {
+     let embed = new Discord.RichEmbed()
+  .setAuthor(message.author.username)
+  .setColor("#8650a7")
+  .addField("Done" , " تــــم ارســالك في الخــاص")
+  message.channel.sendEmbed(embed);
+    }
 });
 
 client.on('message', message => {
-  if (!message.content.startsWith(prefix)) return;
-  var args = message.content.split(' ').slice(1);
-  var argresult = args.join(' ');
-  if (message.author.id !== "476577762396864512") return;
+  if (message.content === "%ping") {
+   const embed = new Discord.RichEmbed()
 
-  
-  if (message.content.startsWith(prefix + 'setwatch')) {
-  client.user.setActivity(argresult, {type: 'WATCHING'})
-     console.log('test' + argresult);
-    message.channel.sendMessage(`Watch Now: **${argresult}`)
-} 
+.setColor("RANDOM")
+.addField('``سرعة أتصال الــبوت`` ' , `${Date.now() - message.createdTimestamp}` + ' ms`') //OUAIL
+              .setFooter(` Bot By : OUAIL#0090
+.`, 'https://cdn.discordapp.com/attachments/445335688628666388/473879902945542144/Epic.png') //OUAIL
 
- 
-  if (message.content.startsWith(prefix + 'setlis')) {
-  client.user.setActivity(argresult, {type: 'LISTENING'})
-     console.log('test' + argresult);
-    message.channel.sendMessage(`LISTENING Now: **${argresult}`)
-} 
-
-
-if (message.content.startsWith(prefix + 'setname')) {
-  client.user.setUsername(argresult).then
-      message.channel.sendMessage(`Username Changed To **${argresult}**`)
-  return message.reply("You Can change the username 2 times per hour");
-} 
-
-if (message.content.startsWith(prefix + 'setavatar')) {
-  client.user.setAvatar(argresult);
-   message.channel.sendMessage(`Avatar Changed Successfully To **${argresult}**`);
-}
-
-if (message.content.startsWith(prefix + 'setT')) {
-  client.user.setGame(argresult, "https://www.twitch.tv/peery13");
-     console.log('test' + argresult);
-    message.channel.sendMessage(`Streaming: **${argresult}`)
-} 
-if (message.content.startsWith(prefix + 'setgame')) {
-  client.user.setGame(argresult);
-     console.log('test' + argresult);
-    message.channel.sendMessage(`Playing: **${argresult}`)
-} 
-
-
-
-});
-
-client.on('message', message => {
-  if (message.author.bot) return;
-   if (message.content === prefix + "help") {
-    let embed = new Discord.RichEmbed()
- .setAuthor(message.author.username)
- .setColor("#8650a7")
- .addField("Done" , " تــــم ارســالك في الخــاص")
- message.channel.sendEmbed(embed);
-
-
-message.author.send(`
-**
-[❖═════ Commands Admins ═══════❖]
-%cl = تقفل الشات
-%op = تفتح الشات
-%mute =  -تعطي شخص ميوت -لازم تذكر السبب و مدت الميوت 
-%unmute = تفك الميوت
-%clear = مسح الشات
-%ban =  -تعطي شخص باند - لازم تذكر السبب
-%kick = -تطرد شخص - لازم تذكر السبب-
-%bans = عدد الأشخاص المبندين من السيرفر
-%قبول
-%رفض
-خاص بالتقديم
-[❖═════ Commands members ═══════❖]
-%id = أيدي حقك 
-%server = معلومات السيرفر
-%avatar = الافاتار حقك
-%report = للتبليغ على شخص
-%contact = للتواصل مع صاحب البوت
-%invites = كم شخص دخلت
-%تقديم = 
-عشان تقدم للإدارة
- [❖═════ Notes ═══════❖]
-1- الي حسابو أقل من شهر راح يتبند تلقائي من البوت
-2- إذا تمنشن البوت راح يرد عليك
-3-الي ينشر روابط ديسكورد أو يوتيوب راح يبلع ميوت
-4-%active اول ما يدخل شخص لازم يفعل نفسو بالأمر 
-**`);
-
-  }
-});
+message.channel.sendEmbed(embed);
+ } //OUAIL
+}); //OUAIL
 
 client.on('message', message => {
   if (message.content.startsWith(prefix +"avatar")) {
@@ -123,7 +137,7 @@ client.on('message', message=> {
   if (message.author.bot) return;
   if (message.isMentioned(client.user))
   {
-  message.reply(" **هلا**");
+  message.reply(" **I am ready!**");
   }
 });
 
@@ -182,7 +196,6 @@ client.on('message', function(msg) {
 if(!message.channel.guild) return;
         if(message.author.bot) return;
 let channel = message.guild.channels.find("name", "التقديمات")
-    if(!channel) return message.reply("**لانشاء روم التقديمات !!setsubmissions من فضلك اكتب الامر**")
     if(channel) {
     message.channel.send( message.member + ', **:timer:**').then( (m) =>{
       m.edit( message.member + ', **اسمك **' )
@@ -223,6 +236,12 @@ let channel = message.guild.channels.find("name", "التقديمات")
                                     m5 = m5.first();
                                     var ask3 = m5.content;
                                     m5.delete();
+                                    message.channel.send( message.member + ', **:timer:**').then( (m) =>{
+                                      m.edit( message.member + ', **ماهو مستواك في الدسكورد خبرتك في الإدارة و كم لك في الدسكورد؟**' )
+                                      m.channel.awaitMessages( m1 => m1.author == message.author,{ maxMatches: 1, time: 60*1000 } ).then ( (m6) => {
+                                          m6 = m6.first();
+                                          var ask4 = m6.content;
+                                          m6.delete();
               m.edit(message.member + ', **....جارى جمع البيانات**').then( (mtime)=>{
                 setTimeout(() => {
                   let embed = new Discord.RichEmbed()
@@ -233,6 +252,7 @@ let channel = message.guild.channels.find("name", "التقديمات")
                 .addField('**`هل سيتفاعل ؟`**',`${ask}`)
                 .addField('**`هل سيحترم القوانين ؟`**',`${ask2}`)
                 .addField('**`لماذا يجب علينا قبوله ؟`**',`${ask3}`)
+                .addField('**`مستواه في الدسكورد؟`**',`${ask4}`)
                 .setFooter(message.author.username,'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')
                 channel.send(embed)
                 }, 2500);
@@ -251,14 +271,16 @@ let channel = message.guild.channels.find("name", "التقديمات")
       })
   })
 })
+})
+    })
+  }
 }
-}
-});
+  });
 client.on('message', message=>{
     if(message.content.startsWith("%روم1")) {
     if(!message.channel.guild) return;
         if(message.author.bot) return;
-        if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply("**تحتاج الى `MANAGE_CHANNELS`**");
+        if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply("**تحتاج الى `ADMINISTRATOR`**");
         message.guild.createChannel("التقديمات", "text").then(c =>{
             c.overwritePermissions(message.guild.id, {
                 SEND_MESSAGES: false
@@ -274,7 +296,7 @@ let role = message.content.split(" ").slice(2).join(" ");
 let mySupport = message.guild.roles.find('name',role);
 if(message.content.startsWith("%قبول")) {
 let acRoom = message.guild.channels.find('name', 'القبول-الرفض');
-if(!acRoom) return message.reply("!!setac من فضلك انشاء روم **القبول-الرفض** او اكتب الامر");
+if(!acRoom) return message.reply("%روم2 \n من فضلك انشاء روم **القبول-الرفض** او اكتب الامر");
 if(acRoom) {
 if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return;
 if(!mention) return message.reply('منشن شخص');
@@ -293,7 +315,7 @@ let mention = message.mentions.members.first();
 if(message.content.startsWith("%رفض")) {
 if(!message.channel.guild) return;
 let acRoom = message.guild.channels.find('name', 'القبول-الرفض');
-if(!acRoom) return message.reply("!!setac من فضلك انشاء روم **القبول-الرفض** او اكتب الامر");
+if(!acRoom) return message.reply(" %روم2 \n من فضلك انشاء روم **القبول-الرفض** او اكتب الامر");
 if(!message.guild.member(message.author).hasPermission("MANAGE_ROLES")) return;
 if(!mention) return message.reply("منشن شخص");
 
@@ -481,9 +503,10 @@ client.on('message', msg => {
     msg.delete().then
     msg.channel.bulkDelete(textxt);
         msg.channel.send("```Cleard: " + textxt + "\n Messages```").then(m => m.delete(3000));
-        }    
-    }
 }
+    }
+  }
+})
 });
 
 client.on('message', message => {
@@ -501,6 +524,7 @@ client.on('message', message => {
          
   if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("**You Don't Have ` BAN_MEMBERS ` Permission**");
   if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**I Don't Have ` BAN_MEMBERS ` Permission**");
+  if(mention.id === message.author.id) return message.channel.send('**:x:You Cannot give ban to your self**');
   let user = message.mentions.users.first();
   let reason = message.content.split(" ").slice(2).join(" ");
   /*let b5bzlog = client.channels.find("name", "5bz-log");
@@ -521,20 +545,13 @@ client.on('message', message => {
   .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
   message.channel.send({
     embed : banembed
-  });
-    let thisEmbed = new Discord.RichEmbed()
-    .setAuthor(`BANNED!`, user.displayAvatarURL)
-  .setColor("RANDOM")
-  .setTimestamp()
-  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
-  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
-  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
+  })
 }
 });
 
 client.on('message', message => {
-    if (message.author.kick) return;
-    if (!message.content.startsWith(prefix)) return;
+  if (message.author.kick) return;
+  if (!message.content.startsWith(prefix)) return;
   
     let command = message.content.split(" ")[0];
     command = command.slice(prefix.length);
@@ -546,6 +563,7 @@ client.on('message', message => {
            
     if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("You Don't Have KICK_MEMBERS Permission").then(msg => msg.delete(5000));
     if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("I Don't Have KICK_Members Permission");
+    if(mention.id === message.author.id) return message.channel.send('**:x:You Cannot Kick your self**');
     let user = message.mentions.users.first();
     let reason = message.content.split(" ").slice(2).join(" ");
   
@@ -564,15 +582,7 @@ client.on('message', message => {
     .addField("By:", `[  + ${message.author.tag} +  ]`)
     .addField("Reason:", `[ + ${reason} +  ]`)
     client.channels.get("522425706421157918").send({embed : banembed})
-
-  let thisEmbed = new Discord.RichEmbed()
-  .setAuthor(`KICK!`, user.displayAvatarURL)
-.setColor("RANDOM")
-.setTimestamp()
-.addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
-.addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
-.addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
-}
+    }
 });
 
 client.on('guildMemberAdd', (member) => {
@@ -607,7 +617,6 @@ client.on('guildMemberAdd', (member) => {
                                      })
                                      }
                                      });
-
 
 
 
@@ -693,7 +702,7 @@ client.on('message', function(message) {
   .addField("**# - Channel:**",message.channel,true)
   .addField("**# - Time:**",message.createdAt,true)
   .addField("**# - By:**",message.author.tag,true)
-  .setFooter("لو ان الابلاغ فيه مزح راح يتعرض صاحب الابلاغ لقوبات")
+  .setFooter("**لو ان الابلاغ فيه مزح راح يتعرض صاحب الابلاغ لقوبات**")
 message.channel.send(Rembed)
 message.channel.send("__Are you sure you want to send this to the Server owner??__").then(msg => {
   msg.react("✅")
@@ -784,35 +793,13 @@ message.channel.send({embed});
 });
   }
 });
- client.on('message' , message => {
- if (message.author.bot) return;
-if (message.content.startsWith(prefix + "contact")) {
-if (!message.channel.guild) return;
- let args = message.content.split(" ").slice(1).join(" ");
- client.users.get("476577762396864512").send(
-    "\n" + "**" + "● السيرفر :" + "**" +
-    "\n" + "**" + "» " + message.guild.name + "**" +
-    "\n" + "**" + " ● المرسل : " + "**" +
-    "\n" + "**" + "» " + message.author.tag + "**" +
-    "\n" + "**" + " ● الرسالة : " + "**" +
-    "\n" + "**" + args + "**")
- let embed = new Discord.RichEmbed()
-     .setAuthor(message.author.username, message.author.avatarURL)
-     .setDescription(':mailbox_with_mail: تم ارسال الرسالة الى صاحب البوت بنجاح')
-     .setThumbnail(message.author.avatarURL)
-     .setFooter("By : OUAIL")
-                                                
- message.channel.send(embed);
- }
-    
-});
 
 const invites = {};
 
 const wait = require('util').promisify(setTimeout);
 
 client.on('ready', () => {
-  wait(100);
+  wait(500);
   client.guilds.forEach(g => {
     g.fetchInvites().then(guildInvites => {
       invites[g.id] = guildInvites;
@@ -827,11 +814,40 @@ client.on('guildMemberAdd', member => {
     const inviter = client.users.get(invite.inviter.id);
     const stewart = member.guild.channels.find("name", "chat-space");
      stewart.send(`<@${member.user.id}> **invite By:**  <@${inviter.id}>`);
-    // stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
-  }); 
+     stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
+  })
 });
-})
-
+// ////////////////////////////////////////////////////////////////
+// ///////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////
+// //////////////////////////////////////////
+// ////////////////////////////////
+client.on("guildMemberAdd", (member) => {
+  let channel = member.guild.channels.find('name', 'welcome'); //OUAIL
+  if(!channel) {
+    console.log("!channel fails"); //OUAIL
+    return;
+  }
+  if(member.id === client.user.id) {
+    return;
+  }
+  console.log('made it till here!'); //OUAIL
+    var guild;
+    while (!guild)
+    guild = member.guild
+    guild.fetchInvites().then((data) => {
+        data.forEach((Invite, key, map) => {
+            var Inv = Invite.code;
+            if (dat[Inv])
+                if (dat[Inv] < Invite.uses) {
+                    console.log(3);
+                    console.log(`${member} joined over ${Invite.inviter}'s invite ${Invite.code}`)
+ channel.send(`**By : ${Invite.inviter}  **`)            
+ }
+            dat[Inv] = Invite.uses;
+        }) //OUAIL
+    }) //OUAIL
+}); //OUAIL
 
 
 client.login(process.env.BOT_TOKEN);
