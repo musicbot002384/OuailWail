@@ -1,27 +1,7 @@
 const Discord = require('discord.js');
-const fs = require('fs');
-const util = require('util');
-const mmss = require('ms');
 const moment = require("moment");
-const dateFormat = require('dateformat');
 const client = new Discord.Client();
-const Canvas = require("canvas");
 const prefix = '%'
-
-client.on('guildCreate', guild => {
-  client.channels.get("476577762396864512").send(`:white_check_mark: **تم اضافة البوت في سيرفر جديد مبروكك
-Server name: __${guild.name}__
-Server owner: __${guild.owner}__
-Server id: __${guild.id}__ 
-Server Count: __${guild.memberCount}__**`)
-});
-client.on('guildDelete', guild => {
-  client.channels.get("476577762396864512").send(`:negative_squared_cross_mark: **طردوني حرام والله ايش سويت انا
-Server name: __${guild.name}__
-Server owner: __${guild.owner}__
-Server id: __${guild.id}__ 
-Server Count: __${guild.memberCount}__**`)
-});
 
 client.on('message', msg => {
   var prefix = "%";
