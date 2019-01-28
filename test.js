@@ -82,7 +82,7 @@ client.on('guildMemberAdd',async member => {
           ctx.clip();
           ctx.drawImage(ava, 36, 21, 260, 260);
            
-    let channel = member.guild.channels.find('name', 'chat-sharks');
+    let channel = member.guild.channels.find('name', 'chat');
           client.sendFile(canvas.toBuffer());
  
 });
@@ -803,7 +803,7 @@ message.channel.send({embed});
 });
 
 client.on("guildMemberAdd", (member) => {
-  let channel = member.guild.channels.find('name', 'welcome');
+  let channel = member.guild.channels.find('name', 'chat');
   if(!channel) {
     console.log("!channel fails");
     return;
