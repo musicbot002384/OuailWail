@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const Canvas = require('canvas');
+const jimp = require('jimp');
 const prefix = "%"
 client.on('ready', () => {
     console.log('I am ready!');
