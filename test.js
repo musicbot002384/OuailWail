@@ -276,7 +276,7 @@ let channel = message.guild.channels.find("name", "التقديمات")
                 .addField('**`هل سيحترم القوانين ؟`**',`${ask2}`)
                 .addField('**`لماذا يجب علينا قبوله ؟`**',`${ask3}`)
                 .addField('**`مستواه في الدسكورد؟`**',`${ask4}`)
-                .setFooter(<@${message.author.id}> ,'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')
+                .setFooter(`<@${message.author.id}> `,'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')
                 channel.send(embed)
                 }, 2500);
                 setTimeout(() => {
