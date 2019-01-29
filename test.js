@@ -6,23 +6,6 @@ const jimp = require('jimp');
 const client = new Discord.Client();
 const prefix = '%'
 
-var ei
-var invite
-var inviter
-var stewart
-
-
-client.on('guildMemberAdd', member => { //LAST CODES -HONRAR-
-  member.guild.fetchInvites().then(guildInvites => {
-    const ei = invites[member.guild.id];
-    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-    const inviter = client.users.get(invite.inviter.id);
-    const stewart = member.guild.channels.find("name", "welcome");
-     stewart.send(`<@${member.user.id}> تمت الدعوه من <@${inviter.id}>`);
-   //  stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
-  });
-})
-
 client.on('message', message => {
 var prefix = "%"
     if (message.content.startsWith(prefix + 'clear')) {
@@ -531,7 +514,6 @@ client.on('message', message => {
          
   if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("**You Don't Have ` BAN_MEMBERS ` Permission**");
   if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**I Don't Have ` BAN_MEMBERS ` Permission**");
-  if(mention.id === message.author.id) return message.channel.send('**:x:You Cannot give ban to your self**');
   let user = message.mentions.users.first();
   let reason = message.content.split(" ").slice(2).join(" ");
   /*let b5bzlog = client.channels.find("name", "5bz-log");
@@ -570,7 +552,6 @@ client.on('message', message => {
            
     if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("You Don't Have KICK_MEMBERS Permission").then(msg => msg.delete(5000));
     if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("I Don't Have KICK_Members Permission");
-    if(mention.id === message.author.id) return message.channel.send('**:x:You Cannot Kick your self**');
     let user = message.mentions.users.first();
     let reason = message.content.split(" ").slice(2).join(" ");
   
