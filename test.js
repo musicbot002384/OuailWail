@@ -6,6 +6,7 @@ const jimp = require('jimp');
 const client = new Discord.Client();
 const prefix = '%'
 
+var sWlc
 client.on("guildMemberAdd", member => {
       if(!sWlc[member.guild.id]) sWlc[member.guild.id] = {
     channel: "welcome"
