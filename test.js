@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const moment = require("moment");
 const fs = require('fs');
 const Canvas = require('canvas');
+const dat = require("dat");
 const jimp = require('jimp');
 const client = new Discord.Client();
 const prefix = '%'
