@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 const moment = require("moment");
 const fs = require('fs');
-const dat = require("dat");
 const Canvas = require('canvas');
 const jimp = require('jimp');
 const client = new Discord.Client();
@@ -785,32 +784,6 @@ message.channel.send({embed});
   }
 });
 
-client.on("guildMemberAdd", (member) => {
-  let channel = member.guild.channels.find('name', 'chat');
-  if(!channel) {
-    console.log("!channel fails");
-    return;
-  }
-  if(member.id === client.user.id) {
-    return;
-  }
-  console.log('made it till here!');
-    var guild;
-    while (!guild)
-    guild = member.guild
-    guild.fetchInvites().then((data) => {
-        data.forEach((Invite) => {
-            var Inv = Invite.code;
-            if (dat[Inv])
-                if (dat[Inv] < Invite.uses) {
-                    console.log(3);
-                    console.log(`${member} joined over ${Invite.inviter}'s invite ${Invite.code}`)
- channel.send(`**By : ${Invite.inviter}  **`)            
- }
-            dat[Inv] = Invite.uses;
-        })
-    })
-});
 
 
 client.login(process.env.BOT_TOKEN);
