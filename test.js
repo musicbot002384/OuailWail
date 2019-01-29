@@ -6,46 +6,22 @@ const jimp = require('jimp');
 const client = new Discord.Client();
 const prefix = '%'
 
-client.on("ready", () => {
-  var guild;
-  while (!guild)
-      guild = client.guilds.get("464872904157429761");
-  guild.fetchInvites().then((data) => {
-      data.forEach((Invite, key, map) => {
-          var Inv = Invite.code;
-          dat[Inv] = Invite.uses;
-      });
+var ei
+var invite
+var inviter
+var stewart
+
+
+client.on('guildMemberAdd', member => { //LAST CODES -HONRAR-
+  member.guild.fetchInvites().then(guildInvites => {
+    const ei = invites[member.guild.id];
+    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+    const inviter = client.users.get(invite.inviter.id);
+    const stewart = member.guild.channels.find("name", "welcome");
+     stewart.send(`<@${member.user.id}> تمت الدعوه من <@${inviter.id}>`);
+   //  stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
   });
-});
-
-
-
-client.on("guildMemberAdd", (member) => {
-  let channel = member.guild.channels.get("539580136258011136");
-  if (!channel) {
-      console.log("!the channel id it's not correct");
-      return;
-  }
-  if (member.id == client.user.id) {
-      return;
-  }
-  console.log('-');
-  var guild;
-  while (!guild)
-      guild = client.guilds.get("464872904157429761");
-  guild.fetchInvites().then((data) => {
-      data.forEach((Invite, key, map) => {
-          var Inv = Invite.code;
-          if (dat[Inv])
-              if (dat[Inv] < Invite.uses) {
-channel.send(`**By:  ${Invite.inviter} **`) ;        
-}
-          dat[Inv] = Invite.uses;
-     
-     });
-  });
-});
- 
+})
 
 client.on('message', message => {
 var prefix = "%"
