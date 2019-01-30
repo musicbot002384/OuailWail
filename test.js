@@ -6,7 +6,6 @@ const jimp = require('jimp');
 const client = new Discord.Client();
 const prefix = '%'
 
-var shift
 var roles = {};
 client.on('guildMemberRemove', member => {
  roles[member.id] = {roles: member.roles.array()};
@@ -16,7 +15,7 @@ if(!roles[member.user.id]) return;
 console.log(roles[member.user.id].roles.length);
 for(let i = 0; i < roles[member.user.id].roles.length; i++) {
 member.addRole(roles[member.user.id].roles);
-roles.shift();
+roles[member.user.id].shift();
 }
 });
 
