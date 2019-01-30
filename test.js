@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const moment = require("moment");
 const fs = require('fs');
+const util = require ('util');
 const Canvas = require('canvas');
 const jimp = require('jimp');
 const client = new Discord.Client();
