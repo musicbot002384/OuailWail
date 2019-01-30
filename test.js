@@ -21,9 +21,25 @@ roles[member.user.id].roles.shift();
 
 client.on('guildMemberAdd', member => {
   const guild = member.guild;
-  guild.channels.find(channel => channel.name === "welcome").send(`**Welcome To Sharks** :shark: ${member.user.username}
-  **Invite By:** ${inviter.user.username} `);
+  guild.channels.find(channel => channel.name === "welcome").send(`**Welcome To Sharks** :shark: ${member.user.username}`);
 });
+
+
+
+client.on('guildMemberAdd', member => { //LAST CODES -HONRAR-
+  member.guild.fetchInvites().then(guildInvites => {
+    const ei = invites[member.guild.id];
+    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+    const inviter = client.users.get(invite.inviter.id);
+    const stewart = member.guild.channels.find("name", "welcome");
+     stewart.send(`<@${member.user.id}> تمت الدعوه من <@${inviter.id}>`);
+     var ei
+     var invite
+     var inviter
+     var stewart
+   //  stewart.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
+  });
+})
 
 client.on('guildMemberAdd', member => {
 
