@@ -15,7 +15,7 @@ if(!roles[member.user.id]) return;
 console.log(roles[member.user.id].roles.length);
 for(let i = 0; i < roles[member.user.id].roles.length; i++) {
 member.addRole(roles[member.user.id].roles);
-roles[member.user.id].shift();
+roles[member.user.id].roles.shift();
 }
 });
 
