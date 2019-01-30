@@ -20,6 +20,12 @@ roles[member.user.id].roles.shift();
 });
 
 client.on('guildMemberAdd', member => {
+  const guild = member.guild;
+  guild.channels.find(channel => channel.name === "welcome").send("**Welcome To Sharks** :shark:  "+member.user.username);
+  guild.channel.find(channel => channel.name === "welcome" ).send("**Invite By:**"+inviter.user.username);
+});
+
+client.on('guildMemberAdd', member => {
 
     const channel = member.guild.channels.find('name', 'welcome');
   
