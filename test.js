@@ -6,18 +6,15 @@ const jimp = require('jimp');
 const client = new Discord.Client();
 const prefix = '%'
 
-var roles = {};
+const roles = new Map();
 client.on('guildMemberRemove', member => {
- roles[member.id] = {roles: member.roles.array()};
-});
-client.on('guildMemberAdd', member => {
-if(!roles[member.user.id]) return;
-console.log(roles[member.user.id].roles.length);
-for(let i = 0; i < roles[member.user.id].roles.length; i++) {
-member.addRole(roles[member.user.id].roles);
-roles[member.user.id].roles.shift();
+roles.set(member.id, member.roles.array());
+})
+client.on('guildMemberAdd') member => {
+const memberRoles = roles.get(member.id);
+if(!memberRoles) return;
+else memberRoles.forEach(role => member.addRole(role));
 }
-});
 
 client.on('guildMemberAdd', member => {
 
