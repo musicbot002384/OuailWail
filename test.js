@@ -24,9 +24,21 @@ client.on('guildMemberAdd', member => {
   guild.channels.find(channel => channel.name === "welcome").send(`**Welcome To Sharks** :shark: ${member.user.username}`);
 });
 
+const invites = {};
 
+const wait = require('util').promisify(setTimeout);
 
-client.on('guildMemberAdd', member => { //LAST CODES -HONRAR-
+client.on('ready', () => {
+  wait(1000);
+
+  client.guilds.forEach(g => {
+    g.fetchInvites().then(guildInvites => {
+      invites[g.id] = guildInvites;
+    });
+  });
+});
+
+client.on('guildMemberAdd', member => { 
   member.guild.fetchInvites().then(guildInvites => {
     const ei = invites[member.guild.id];
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
