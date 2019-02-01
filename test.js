@@ -18,7 +18,7 @@ client.on("ready", () => {
     function Rainbow() {
       client.guilds.get('464872904157429761').roles.find("name", "Rainbow").setColor("RANDOM");
     };
-    setInterval(Rainbow, 1000);
+    setInterval(Rainbow, 5000);
 });
 
 var roles = {};
