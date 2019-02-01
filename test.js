@@ -7,6 +7,20 @@ const jimp = require('jimp');
 const client = new Discord.Client();
 const prefix = '%'
 
+client.on('ready', () => {
+    console.log(`Welcome To Me ${client.user.tag}!`);
+    console.log('----------------');
+    client.user.setGame(`Sharks Bot %help`,"https://www.twitch.tv/peery13");
+        client.user.setStatus("dnd");
+});
+
+client.on("ready", () => {
+    function Rainbow() {
+      client.guilds.get('464872904157429761').roles.find("name", "Rainbow").setColor("RANDOM");
+    };
+    setInterval(Rainbow, 1000);
+});
+
 var roles = {};
 client.on('guildMemberRemove', member => {
  roles[member.id] = {roles: member.roles.array()};
@@ -135,12 +149,6 @@ ${args}
                 }
 });
 
-client.on('ready', () => {
-  console.log(`Welcome To Me ${client.user.tag}!`);
-  console.log('----------------');
-  client.user.setGame(`Sharks Bot %help`,"https://www.twitch.tv/peery13");
-      client.user.setStatus("dnd");
-});
 
 client.on("message", message => {
     if (message.content === (prefix + "help")) {
@@ -177,7 +185,6 @@ client.on("message", message => {
          منشن البوت يرد عليك
          لو حسابك أقل من أسبوع راح يتبند
          ويــوجد ميــزات كــثير
-
        **  `)
    message.author.sendEmbed(embed)
    
